@@ -8,7 +8,10 @@
     "test": "nx test"
   },
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "@elastic/elasticsearch": "^8.6.0",
+    "playwright": "^1.30.0"
+  },
   "devDependencies": {
     "@nrwl/cli": "14.4.3",
     "@nrwl/nx-cloud": "latest",
