@@ -8,7 +8,7 @@ import { InstantSearch, SearchBox, Hits, RefinementList } from 'react-instantsea
 import Timer from './timer/timer';
 
 const searchClient = Client({
-    url: "http://localhost:3000/api/search",
+    url: "http://localhost:3001/api/search",
   });
 
 export function App() {
