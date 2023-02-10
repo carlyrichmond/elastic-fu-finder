@@ -14,7 +14,7 @@ describe('Timer', () => {
     expect(baseElement.innerHTML).toContain('3:0');
 
     await act(async () => { await new Promise(resolve => setTimeout(resolve, 2000)) });
-    
+
     expect(baseElement.innerHTML).toContain('2:5');
   });
 });

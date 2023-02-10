@@ -1,8 +1,9 @@
 import styles from './timer.module.scss';
+
 import { useEffect, useState } from 'react';
 
 /* eslint-disable-next-line */
-export interface TimerProps { }
+export interface TimerProps {}
 
 export function Timer(props: TimerProps) {
   const gameTimeInMinutes = 3;
