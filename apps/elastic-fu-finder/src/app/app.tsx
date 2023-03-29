@@ -2,7 +2,7 @@
 import styles from './app.module.scss';
 
 import Client from '@searchkit/instantsearch-client';
-import { InstantSearch, SearchBox, Hits, RefinementList } from 'react-instantsearch-dom';
+import { InstantSearch, SearchBox, RefinementList } from 'react-instantsearch-dom';
 
 import Timer from './timer/timer';
 import { PageHits } from './results/results';
