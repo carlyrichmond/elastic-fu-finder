@@ -35,7 +35,7 @@ export function Timer(props: TimerProps) {
   }, []);
 
   return (
-    <div className={styles['container']}>
+    <div data-testid='timer' className={styles['container']}>
       {
         !isTargetTime ? (
           <h1>{minutes}:{seconds}</h1>
