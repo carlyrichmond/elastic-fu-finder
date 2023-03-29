@@ -20,7 +20,7 @@ app.use(express.json());
 const client = Client({
   connection: {
     host: 'https://elastic-fu-finder.es.uksouth.azure.elastic-cloud.com:9243',
-    apiKey: 'MY KEY', // TODO extract to secret
+    apiKey: 'emFlc0xZY0JLb0wtbWt5eUdaSEc6MGg5RUt5MHpUMmFDRDllQjRDcUgydw==', // TODO extract to secret
   },
   search_settings: {
     highlight_attributes: ['url', 'title', 'body_content'],
