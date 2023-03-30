@@ -17,18 +17,6 @@ p {
     text-align: center;
 }
 
-.es-logo {
-    width: 3.5rem;
-    height: auto;
-    align-self: center;
-}
-
-img {
-    max-width: 55%;
-    height: auto;
-    aspect-ratio: 16/9;
-}
-
 .buttons {
     display: flex;
     flex-direction: row;
@@ -53,5 +41,32 @@ img {
     .play-button {
         background-color: styles.$primary-button-color;
         color: styles.$main-text-color;
+    }
+}
+
+.es-logo {
+    width: 3.5rem;
+    height: auto;
+
+    align-self: end;
+    // negative borders required to align ES logo to pac-man style border
+    margin-right: -0.5rem;
+    margin-bottom: -1.5rem;
+}
+
+.pac-man-border {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    .splash-image {
+        max-width: 55%;
+        height: auto;
+        aspect-ratio: 16/9;
+
+        border-bottom: 0.5rem dotted styles.$main-text-color;
+        border-right: 0.5rem dotted styles.$main-text-color;
+        padding: 0 2rem 2rem 0;
     }
 }
