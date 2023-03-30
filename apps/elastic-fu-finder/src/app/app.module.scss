@@ -1,1 +1,47 @@
-/* Your styles goes here. */
+@use '../styles';
+
+header {
+    background-color: styles.$header-footer-background-color;
+    color: styles.$main-text-color;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
+    position: fixed;
+    top: 0;
+    height: 5rem;
+
+    .elastic-logo {
+        width: 10rem;
+        height: auto;
+    }
+
+    .games-title {
+        padding-left: 0.5rem;
+        font-family: styles.$header-font-family;
+    }
+}
+
+main {
+    height: 100vh;
+    background-color: styles.$main-background-color;
+
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+footer {
+    background-color: styles.$header-footer-background-color;
+    color: styles.$main-text-color;
+    padding: 1rem;
+    font-family: styles.$font-family;
+    
+    /* Positioning */
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+}

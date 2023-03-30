@@ -1,0 +1,56 @@
+@use '../../styles';
+
+.container {
+    max-width: 100%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    color: styles.$main-text-color;
+    font-family: styles.$font-family;
+    text-align: center;
+}
+
+.es-logo {
+    width: 3.5rem;
+    height: auto;
+    align-self: center;
+}
+
+img {
+    max-width: 55%;
+    height: auto;
+    aspect-ratio: 16/9;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 2rem;
+
+    button {
+        border-radius: 5%;
+        border-color: styles.$main-text-color;
+        width: 6rem;
+        height: 3rem;
+
+        font-family: styles.$font-family;
+        font-size: medium;
+    }
+
+    .rules-button {
+        background-color: styles.$secondary-button-color;
+        color: styles.$main-text-color;
+        margin-right: 1.5rem;
+    }
+
+    .play-button {
+        background-color: styles.$primary-button-color;
+        color: styles.$main-text-color;
+    }
+}

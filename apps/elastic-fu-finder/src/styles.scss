@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Consolas&family=Menlo&family=Courier&family=monospace&family=Inter&display=swap');
+
+$main-background-color: rgb(29, 30, 35);
+$header-footer-background-color: rgb(19, 19, 23);
+$main-text-color: #ffffff;
+
+$primary-button-color: #36a2ef;
+$secondary-button-color: #f68fbe;
+
+$header-font-family: 'Roboto Mono';
+$font-family: 'Inter';
+
+body {
+    margin: 0;
+}

@@ -1,27 +1,27 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styles from './app.module.scss';
 
-import Client from '@searchkit/instantsearch-client';
-import { InstantSearch, SearchBox, RefinementList } from 'react-instantsearch-dom';
+import { Route, Routes } from 'react-router-dom';
 
-import Timer from './timer/timer';
-import { PageHits } from './results/results';
-
-const searchClient = Client({
-    url: "http://localhost:3001/api/search",
-  });
+import Game from './game/game';
+import Home from './home/home';
 
 export function App() {
   return (
     <>
-      <h1>Elastic Fu-Finder</h1>
-      <Timer/>
-
-      <InstantSearch indexName="search-elastic-fu-finder-pages" searchClient={searchClient}>
-        <SearchBox/>
-        <RefinementList attribute="type" />
-        <PageHits />
-      </InstantSearch>
+    <header>
+      <img className={styles['elastic-logo']} alt="Elastic Logo" src="logo-elastic-horizontal-color-reverse.svg" />
+      <h1 className={styles['games-title']}>games</h1>
+    </header>
+    <main>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/play" element={<Game />} />
+      </Routes>
+    </main>
+    <footer>
+      Made by Carly Richmond with <span aria-label="heart" role="img">&#x1F49C;</span> and <span aria-label="heart" role="img">&#x1f375;</span>
+    </footer>
     </>
   );
 }
