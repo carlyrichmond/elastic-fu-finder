@@ -20,7 +20,7 @@ export function App() {
       </Routes>
     </main>
     <footer>
-      Made by Carly Richmond with <span aria-label="heart" role="img">&#x1F49C;</span> and <span aria-label="heart" role="img">&#x1f375;</span>
+      Made by Carly Richmond <span aria-label="avocado" role="img">&#x1f951;</span> with <span aria-label="heart" role="img">&#x1F49C;</span> and <span aria-label="heart" role="img">&#x1f375;</span>
     </footer>
     </>
   );
