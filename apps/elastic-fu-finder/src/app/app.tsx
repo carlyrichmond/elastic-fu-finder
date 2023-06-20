@@ -11,7 +11,7 @@ export function App() {
     <>
     <header>
       <img className={styles['elastic-logo']} alt="Elastic Logo" src="logo-elastic-horizontal-color-reverse.svg" />
-      <h1 className={styles['games-title']}>games</h1>
+      <h1 className={styles['games-title']}>Fu-Finder</h1>
     </header>
     <main>
       <Routes>

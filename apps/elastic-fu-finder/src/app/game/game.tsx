@@ -1,13 +1,13 @@
 import styles from './game.module.scss';
 
-import { InstantSearch, SearchBox, RefinementList } from 'react-instantsearch-dom';
+import { InstantSearch, SearchBox, RefinementList, Hits } from 'react-instantsearch-hooks-web';
 import Client from '@searchkit/instantsearch-client';
 
-import { PageHits } from '../results/results';
 import Timer from '../timer/timer';
+import Result from '../result/result';
 
 const searchClient = Client({
-    url: "http://localhost:3001/api/search",
+    url: "http://localhost:3001/api/search"
   });
 
 /* eslint-disable-next-line */
@@ -21,7 +21,7 @@ export function Game(props: GameProps) {
       <InstantSearch indexName="search-elastic-fu-finder-pages" searchClient={searchClient}>
         <SearchBox/>
         <RefinementList attribute="type" />
-        <PageHits />
+        <Hits hitComponent={Result}/>
       </InstantSearch>
     </div>
   );
