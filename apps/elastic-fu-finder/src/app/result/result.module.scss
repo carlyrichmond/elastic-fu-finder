@@ -3,4 +3,20 @@
 img {
     width: 25%;
     height: 25%;
+
+    margin: 2rem;
+}
+
+h3 {
+    color: styles.$main-text-color;
+    font-family: styles.$font-family;
+}
+
+.search-result {
+    display: flex;
+    flex-direction: row;
+    background-color: styles.$result-background-color;
+    border-radius: 25px;
+
+    margin: 2rem;
 }

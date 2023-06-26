@@ -34,13 +34,17 @@ export function Timer(props: TimerProps) {
     return () => clearInterval(interval);
   }, []);
 
+  // Handle :00 seconds case with minimumIntegerDigits option
+  const formattedSeconds = seconds.toLocaleString(undefined, {minimumIntegerDigits: 2});
+
   return (
     <div data-testid='timer' className={styles['container']}>
-      {
-        !isTargetTime ? (
-          <h1>{minutes}:{seconds}</h1>
-        ) : <h1>FIN</h1>
-      }
+      <img className={styles['timer-icon']} src="time-icon.png" alt="Time remaining"/>
+        {
+          !isTargetTime ? (
+            <h3 className={styles['time-remaining']}>{minutes}:{formattedSeconds}</h3>
+          ) : <h3 className={styles['time-remaining']}>FIN</h3>
+        }
     </div>
   );
 }

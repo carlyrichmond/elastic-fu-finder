@@ -1,21 +1,16 @@
 @use '../../styles';
 
-
-.container {
+.score-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     align-items: center;
 }
 
-img.timer-icon {
-    width: 20%;
-    height: 20%;
-
+.score-icon {
     margin: 1rem;
 }
 
-.time-remaining {
+.score {
     color: styles.$main-text-color;
     font-family: styles.$font-family;
-    font-size: xx-large;
 }

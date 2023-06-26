@@ -1,6 +1,5 @@
 import styles from './result.module.scss';
 
-/* eslint-disable-next-line */
 export interface ResultProps {
   hit: any;
 }
@@ -9,10 +8,11 @@ export function Result(props: ResultProps) {
   const screenshotPath = `screenshots/${props.hit.objectID}.png`;
   
   return (
-    <>
+    <div className={styles['search-result']}>
       <img className={styles['screenshot']} alt="Web page screenshot" src={screenshotPath} />
-      <p className={styles['result']} data-testid="result-element" key={props.hit.objectID}>{props.hit.title}</p>
-    </>
+      <h3 className={styles['result-title']} data-testid="result-title" key={props.hit.objectID}>{props.hit.title}</h3>
+      <p className={styles['result-body']}>{props.hit.meta_description}</p>
+    </div>
   );
 }
 
