@@ -1,0 +1,23 @@
+@use '../../styles';
+
+.results {
+    min-height: 12rem;
+}
+
+.results-header {
+    text-align: center;
+    color: styles.$main-text-color;
+    font-family: styles.$header-font-family;
+
+    margin-bottom: 0.5rem;
+}
+
+li {
+    list-style-type: none;
+}
+
+.hits-message {
+    margin: 2rem;
+    font-family: styles.$font-family;
+    font-size: large;
+}

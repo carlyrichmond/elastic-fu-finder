@@ -4,8 +4,8 @@ import { InstantSearch, SearchBox, Hits, useInstantSearch} from 'react-instantse
 import Client from '@searchkit/instantsearch-client';
 
 import Timer from '../timer/timer';
-import Result from '../result/result';
 import Score from '../score/score';
+import ResultsList from '../results-list/results-list';
 
 const searchClient = Client({
   url: "http://localhost:3001/api/search"
@@ -13,20 +13,6 @@ const searchClient = Client({
 
 /* eslint-disable-next-line */
 export interface GameProps { }
-
-function ShowResultsFilter() {
-  const { indexUiState, results } = useInstantSearch();
-
-  if (!indexUiState.query) {
-    return <p className={styles['hits-message']}>No query specified</p>;
-  }
-
-  else if (!results.__isArtificial && results.nbHits === 0) {
-    return <p className={styles['hits-message']}>No results available</p>;
-  }
-
-  return <Hits hitComponent={Result} />;
-}
 
 export function Game(props: GameProps) {
   return (
@@ -52,10 +38,7 @@ export function Game(props: GameProps) {
               resetIcon: styles['search-reset-icon']
             }} />
         </div>
-        <div className={styles['results']}>
-          <h2 className={styles['results-header']}>Results</h2>
-          <ShowResultsFilter/>
-        </div>
+        <ResultsList/>
       </InstantSearch>
     </div>
   );
