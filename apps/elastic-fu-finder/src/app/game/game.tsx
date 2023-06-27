@@ -1,6 +1,6 @@
 import styles from './game.module.scss';
 
-import { InstantSearch, SearchBox, Hits } from 'react-instantsearch-hooks-web';
+import { InstantSearch, SearchBox, Hits, useInstantSearch} from 'react-instantsearch-hooks-web';
 import Client from '@searchkit/instantsearch-client';
 
 import Timer from '../timer/timer';
@@ -13,6 +13,20 @@ const searchClient = Client({
 
 /* eslint-disable-next-line */
 export interface GameProps { }
+
+function ShowResultsFilter() {
+  const { indexUiState, results } = useInstantSearch();
+
+  if (!indexUiState.query) {
+    return <p className={styles['hits-message']}>No query specified</p>;
+  }
+
+  else if (!results.__isArtificial && results.nbHits === 0) {
+    return <p className={styles['hits-message']}>No results available</p>;
+  }
+
+  return <Hits hitComponent={Result} />;
+}
 
 export function Game(props: GameProps) {
   return (
@@ -38,8 +52,10 @@ export function Game(props: GameProps) {
               resetIcon: styles['search-reset-icon']
             }} />
         </div>
-        <h2 className={styles['results-header']}>Results</h2>
-        <Hits hitComponent={Result} />
+        <div className={styles['results']}>
+          <h2 className={styles['results-header']}>Results</h2>
+          <ShowResultsFilter/>
+        </div>
       </InstantSearch>
     </div>
   );
