@@ -1,6 +1,6 @@
 import styles from './game.module.scss';
 
-import { InstantSearch, SearchBox, Hits, useInstantSearch} from 'react-instantsearch-hooks-web';
+import { InstantSearch, SearchBox } from 'react-instantsearch-hooks-web';
 import Client from '@searchkit/instantsearch-client';
 
 import Timer from '../timer/timer';
