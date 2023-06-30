@@ -56,6 +56,7 @@
       "executor": "@nrwl/vite:test",
       "outputs": ["coverage/apps/elastic-fu-finder"],
       "options": {
+        "coverage": true,
         "passWithNoTests": true,
         "reportsDirectory": "../../coverage/apps/elastic-fu-finder"
       }

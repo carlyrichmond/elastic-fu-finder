@@ -20,6 +20,6 @@ describe('App', () => {
         <App />
       </BrowserRouter>
     );
-    expect(getByText(/Elastic Fu-Finder/gi)).toBeTruthy();
+    expect(getByText(/Fu-Finder/gi)).toBeTruthy();
   });
 });

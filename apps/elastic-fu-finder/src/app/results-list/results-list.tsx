@@ -5,7 +5,7 @@ import Result from '../result/result';
 /* eslint-disable-next-line */
 export interface ResultsListProps {}
 
-function ShowResultsFilter() {
+export function ShowResultsFilter() {
   const { indexUiState, results } = useInstantSearch();
 
   if (!indexUiState.query) {
