@@ -4,7 +4,6 @@
   "projects": {
     "elastic-fu-finder": "apps/elastic-fu-finder",
     "elastic-fu-finder-e2e": "apps/elastic-fu-finder-e2e",
-    "elastic-fu-finder-server": "apps/elastic-fu-finder-server",
-    "elastic-fu-finder-server-e2e": "apps/elastic-fu-finder-server-e2e"
+    "elastic-fu-finder-server": "apps/elastic-fu-finder-server"
   }
 }

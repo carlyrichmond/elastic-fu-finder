@@ -1,13 +1,15 @@
-import { getGreeting } from '../support/app.po';
+import { getTitle, getMessage, getPlayButton } from '../support/app.po';
 
 describe('elastic-fu-finder', () => {
   beforeEach(() => cy.visit('/'));
 
-  it('should display welcome message', () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
+  it('should display welcome', () => {
+    getTitle().contains('Fu-Finder');
+    getMessage().contains('Test your search-fu skills with Elasticsearch')
+  });
 
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome elastic-fu-finder');
+  it('should start game', () => {
+    getPlayButton().click();
+    cy.url().should('contain', '/play');
   });
 });

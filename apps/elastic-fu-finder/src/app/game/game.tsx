@@ -18,11 +18,11 @@ export function Game(props: GameProps) {
   return (
     <div className={styles['container']}>
       <div className={styles['time-and-score-bar']}>
-        <Timer />
-        <Score />
+        <Timer/>
+        <Score/>
       </div>
       <div className={styles['document-to-search']}>
-        <img className={styles['screenshot']} alt="Searchable page screenshot" src="screenshots/63d2b8a11238d1c27938b6bc.png" />
+        <img data-testId="screenshot" className={styles['screenshot']} alt="Searchable page screenshot" src="screenshots/63d2b8a11238d1c27938b6bc.png" />
         <p className={styles['document-snippet']}>Here is a sample of the body we want to see...</p>
       </div>
       <InstantSearch indexName="search-elastic-fu-finder-pages" searchClient={searchClient}>

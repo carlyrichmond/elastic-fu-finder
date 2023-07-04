@@ -18,10 +18,10 @@ export function Home(props: HomeProps) {
 
   return (
     <div className={styles['container']}>
-        <p>Test your search-fu skills with Elasticsearch!</p>
+        <p data-testid="welcome-message">Test your search-fu skills with Elasticsearch!</p>
           <div className={styles['buttons']}>
             <button className={styles['rules-button']} onClick={onRulesSelect}>Rules</button>
-            <button className={styles['play-button']} onClick={onPlaySelect}>Play now!</button>
+            <button data-testid="play-button" className={styles['play-button']} onClick={onPlaySelect}>Play now!</button>
           </div>
           
           <div className={styles['pac-man-border']}>

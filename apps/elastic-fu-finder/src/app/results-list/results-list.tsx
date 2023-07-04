@@ -9,11 +9,11 @@ export function ShowResultsFilter() {
   const { indexUiState, results } = useInstantSearch();
 
   if (!indexUiState.query) {
-    return <p className={styles['hits-message']}>No query specified</p>;
+    return <p data-testid="result-message" className={styles['hits-message']}>No query specified</p>;
   }
 
   else if (!results.__isArtificial && results.nbHits === 0) {
-    return <p className={styles['hits-message']}>No results available</p>;
+    return <p data-testid="result-message" className={styles['hits-message']}>No results available</p>;
   }
 
   return <Hits hitComponent={Result} />;
@@ -21,7 +21,7 @@ export function ShowResultsFilter() {
 
 export function ResultsList(props: ResultsListProps) {
   return (
-    <div className={styles['results']}>
+    <div data-testid="result" className={styles['results']}>
           <h2 className={styles['results-header']}>Results</h2>
           <ShowResultsFilter/>
     </div>
