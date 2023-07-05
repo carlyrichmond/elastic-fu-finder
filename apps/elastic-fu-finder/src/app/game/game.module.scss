@@ -1,5 +1,10 @@
 @use '../../styles';
 
+main {
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
+
 .container {
     display: flex;
     width: 100%;
@@ -7,39 +12,48 @@
     flex-direction: column;
     justify-content: space-between;
     margin: auto;
-
-    background: rgb(238,174,202);
-    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
 }
 
 .time-and-score-bar {
     background: rgb(246,143,190);
     filter: drop-shadow(0px 5px 4px styles.$primary-button-color);
-
-    margin-top: 4.5rem;
-    padding-top: 0;
-    padding-right: 1rem;
     height: 5rem;
-
     position: fixed;
+
+    top: 5rem;
     width: 100%;
     display: flex;
+    flex-shrink: 1;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
 }
 
 .screenshot {
-    margin-top: 12rem;
-    width: 40%;
+    width: 35%;
 
     border-radius: 25px;
 }
 
-.document-snippet {
+.document-details {
     width: 40%;
-    margin: 12rem auto;
+    text-align: left;
+}
 
-    text-align: justify;
+.document-header {
+    text-align: left;
+    text-overflow: ellipsis;
+
+    font-family: styles.$font-family;
+    color: styles.$main-text-color;
+}
+
+.document-snippet {
+    text-align: left;
+    text-overflow: ellipsis;
+
+    font-family: styles.$font-family;
+    color: styles.$subdued-text;
 }
 
 .document-to-search {
@@ -47,67 +61,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
-
-    max-height: 90vh;
-}
-
-// SearchBox styling
-
-.search-box-parent {
-    display: flex;
-    align-items: center;
     justify-content: space-around;
-    margin: 0 auto;
 
-    height: 2.5rem;
-    width: 95%;
-}
-
-.search-box-parent > :nth-child(1) {
-    width: 100% !important;
-    height: 100%;
-
-    display: flex;
-    align-items: center;
-}
-
-.search-form {
-    width: 100% !important;
-    height: 100%;
-
-    margin: auto;
-}
-
-.search-input {
-    width: 84%;
-    height: 100%;
-
-    border-radius: 10px;
-}
-
-.search-submit {
-    background-color: styles.$main-background-color;
-    
-    width: 8%;
-    height: 100%;
-
-    border-radius: 25px;
-}
-
-.search-submit-icon {
-    fill: styles.$main-text-color !important;
-}
-
-.search-reset {
-    background-color: styles.$main-background-color;
-
-    width: 8%;
-    height: 100%;
-
-    border-radius: 25px;
-}
-
-.search-reset-icon {
-    fill: styles.$main-text-color !important;
+    margin-top: 10rem;
 }
