@@ -1,9 +1,15 @@
 @use '../../styles';
 
+.result-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 // Text box
 
 input {
-    width: 100%;
+    width: 80%;
     height: 100%;
     min-height: 40px;
     padding-left: 2.5rem;
@@ -21,6 +27,7 @@ input::placeholder {
 
 .results {
     min-height: 12rem;
+    margin-bottom: 5rem;
 }
 
 .results-header {
@@ -38,5 +45,5 @@ li {
 .hits-message {
     margin: 2rem;
     font-family: styles.$font-family;
-    font-size: large;
+    font-size: 1.10rem;
 }

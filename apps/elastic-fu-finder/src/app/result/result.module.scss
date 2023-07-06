@@ -1,22 +1,53 @@
 @use '../../styles';
 
 img {
-    width: 25%;
-    height: 25%;
+    //width: 50%;
+    //height: 50%;
+    display: block;
+    max-width: 40%;
+    max-height: 80%;
+    width: auto;
+    height: auto;
 
     margin: 2rem;
 }
 
 h3 {
+    width: auto;
+    max-width: 80%;
+    height: auto;
+    max-height: 20%;
+
     color: styles.$main-text-color;
     font-family: styles.$font-family;
+    font-size: 1rem;
+
+    white-space: no-wrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 .search-result {
     display: flex;
+    height: 100%;
     flex-direction: row;
+    align-items: center;
     background-color: styles.$result-background-color;
     border-radius: 25px;
 
+    overflow: hidden;
     margin: 2rem;
+}
+
+p.result-body {
+    display: block;
+    font-size: 1rem;
+    text-align: left;
+
+    overflow: hidden;
+    overflow-wrap: break-word;
+    -webkit-box-orient: vertical;
+    width: clamp(5%, 80vw, 70%);
+
+    height: 10rem;
 }

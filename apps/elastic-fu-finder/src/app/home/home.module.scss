@@ -13,7 +13,7 @@
 p {
     color: styles.$main-text-color;
     font-family: styles.$font-family;
-    font-size: x-large;
+    font-size: 1.5rem;
     text-align: center;
 }
 
@@ -29,7 +29,7 @@ p {
         height: 3rem;
 
         font-family: styles.$font-family;
-        font-size: medium;
+        font-size: 1rem;
     }
 
     .rules-button {
@@ -47,15 +47,17 @@ p {
 .es-logo {
     width: 3.5rem;
     height: auto;
+    aspect-ratio: 16/9;
 
     align-self: end;
     // negative borders required to align ES logo to pac-man style border
-    margin-right: -0.5rem;
-    margin-bottom: -1.5rem;
+    margin-right: -1.5rem;
+    margin-bottom: 1.25rem;
 }
 
 .pac-man-border {
     display: flex;
+
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -65,8 +67,8 @@ p {
         height: auto;
         aspect-ratio: 16/9;
 
-        border-bottom: 0.5rem dotted styles.$main-text-color;
-        border-right: 0.5rem dotted styles.$main-text-color;
-        padding: 0 1.5rem 2rem 0;
+        border-bottom: 0.25em dotted styles.$main-text-color;
+        border-right: 0.25em dotted styles.$main-text-color;
+        padding: 0 1% 1% 0;
     }
 }

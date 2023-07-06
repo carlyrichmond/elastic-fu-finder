@@ -45,7 +45,7 @@ export function ResultsList(props: ResultsListProps) {
   }
   
   return (
-    <>
+    <div className={styles['result-list-container']}>
       <input id="search-bar" defaultValue={query} 
         type="search" placeholder="Find the above page!" 
         aria-label="Search record selection" onKeyUp={search}></input>
@@ -60,7 +60,7 @@ export function ResultsList(props: ResultsListProps) {
               }) : ''
             }
       </div>
-    </>
+    </div>
   );
 }
 
