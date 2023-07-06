@@ -2,62 +2,39 @@
 
 ## Search Game for Teaching Search Using Elasticsearch
 
-This project was generated using [Nx](https://nx.dev).
+This monorepo project, generated using [Nx](https://nx.dev), contains the full implementation of Fu-Finder using Elasticsearch. This game is a reincarnation of [Fu-Finder](https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=557f75dc9f1252639566822d9cb94496b2fc785a) developed by the author examining query behaviour. It is in the process of being revamped to show the differences in query behaviour required for keyword and semantic search, or vector search.
 
-### Nx How-to
+![Fu-Finder Web Screenshot](./docs/screenshots/fu-finder-web.png)
 
-🔎 **Smart, Fast and Extensible Build System**
+### Project Structure
 
-#### Adding capabilities to your workspace
+This repo contains the following application layers:
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+1. [elastic-fu-finder](./apps/elastic-fu-finder/): [React](https://reactjs.org) and Typescript UI
+2. [elastic-fu-finder-server](./apps/elastic-fu-finder-server/): Express Typescript Server
+3. [elastic-fu-finder-e2e](./apps/elastic-fu-finder-e2e/): Cypress E2E Testing Suite
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+### Running Locally
 
-Below are our core plugins:
+The UI and server projects both need to be running to play the game locally. 
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+#### Initial Setup
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+The `npm` dependencies must be installed before running the application:
 
-#### Generate an application
+```sh
+npm install
+```
+#### Run
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+Running both the UI and server components can be done using the `nx serve` command:
 
-> You can use any of the plugins above to generate applications as well.
+```sh
+nx serve elastic-fu-finder &
+nx serve elastic-fu-finder-server &
+```
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
-
-#### Generate a library
-
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
-
-> You can also use any of the plugins above to generate libraries as well.
-
-Libraries are shareable across libraries and applications. They can be imported from `@elastic-fu-finder/mylib`.
-
-#### Development server
-
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-#### Code scaffolding
-
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
-
-#### Build
-
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+The UI is accessible via the web browser at `http://localhost:4200`. The availability of the server can be checked in a browser by going to `http://localhost:3001/`.
 
 #### Running unit tests
 
@@ -71,26 +48,17 @@ Run `nx e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cy
 
 Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
 
-#### Understand your workspace
+### Understand your workspace
 
 Run `nx graph` to see a diagram of the dependencies of your projects.
 
-#### Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
-
-
-
-#### ☁ Nx Cloud
-
-##### Distributed Computation Caching & Distributed Task Execution
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
 ### Resources
+
+#### Development Resources
+
+1. [Nx Documentation](https://nx.dev)
+2. [React](https://reactjs.org)
+3. [Elasticsearch Node.js/ JavaScript Client](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html)
 
 #### Academic Resources
 
