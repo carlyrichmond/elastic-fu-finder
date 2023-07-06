@@ -26,13 +26,25 @@
 
 .screenshot {
     width: 35%;
-
     border-radius: 25px;
+
+    @media screen and (max-width: 600px) {
+        width: 100%;
+        height: auto;
+
+        margin: 2rem auto 1rem auto;
+    }
 }
 
 .document-details {
     width: 40%;
     text-align: left;
+
+    @media screen and (max-width: 600px) {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+    }
 }
 
 .document-header {
