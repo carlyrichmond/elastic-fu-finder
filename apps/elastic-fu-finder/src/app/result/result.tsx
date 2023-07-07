@@ -13,8 +13,7 @@ export interface Source {
 }
 
 export function Result(props: { hit: DocumentResult, correctResultId: string | undefined }) {
-  // TODO add missing image placeholder logic here and in document widget
-  const screenshotPath = `screenshots/${props.hit._id}.png`;
+  const screenshotPath = props.hit._id ? `screenshots/${props.hit._id}.png` : 'screenshots/undefined.png';
   const isCorrectResult = props.hit._id === props.correctResultId;
 
   return (
