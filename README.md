@@ -41,13 +41,13 @@ nx serve elastic-fu-finder-server &
 
 The UI is accessible via the web browser at `http://localhost:4200`. The availability of the server can be checked in a browser by going to `http://localhost:3001/`.
 
-#### Running unit tests
+### Running unit tests
 
 Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
 
 Run `nx affected:test` to execute the unit tests affected by a change.
 
-#### Running end-to-end tests
+### Running end-to-end tests
 
 Run `nx e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
 
