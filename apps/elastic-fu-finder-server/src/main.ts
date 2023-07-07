@@ -44,6 +44,23 @@ app.post('/api/document', async(req, res) => {
   res.status(500).send({ message: 'Unable to obtain document details' });
  }});
 
+ app.get('/api/ids', async(req, res) => {
+  const index_size = 101;
+  try {
+    const results = await client.search({
+      index: 'search-elastic-fu-finder-pages',
+      _source: ['_id'],
+      query: {
+        match_all: {}
+      },
+      size: index_size
+    });
+    res.send(results);
+  } catch(e)
+ {
+  res.status(500).send({ message: 'Unable to obtain ids' });
+ }});
+
 app.post('/api/search', async (req, res) => {
   const query = req.body.queryString;
 

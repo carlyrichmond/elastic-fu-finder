@@ -5,31 +5,67 @@ import React from 'react';
 
 import Timer from '../timer/timer';
 import Score from '../score/score';
-import ResultsList, { ElasticsearchResult } from '../results-list/results-list';
-import { Source } from '../result/result';
+import { ElasticsearchResult, ResultsList } from '../results-list/results-list';
+import { DocumentResult } from '../result/result';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBackwardStep, faForwardStep, faMugSaucer } from '@fortawesome/free-solid-svg-icons';
 
-/* eslint-disable-next-line */
-export interface GameProps { }
-
-export function Game(props: GameProps) {
-  const [document, setDocument] = React.useState<Source | undefined>(undefined);
+export function Game() {
+  const [document, setDocument] = React.useState<DocumentResult | undefined>(undefined);
+  const [documentIds, setDocumentIds] = React.useState<string[] | undefined>([]);
+  const [priorDocument, setPriorDocument] = React.useState<DocumentResult | undefined>(undefined);
 
   React.useEffect(() => {
-    if (!document){
-      getDocument();
+    if (documentIds?.length === 0) {
+      getAllIds();
+    } else if (!document) {
+      getNextPage();
     }
   })
 
-  function getDocument() {
-    axios.post("http://localhost:3001/api/document", 
-    { documentID: "63d2b8a11238d1c27938b6bc" })
+  function getAllIds() {
+    axios.get("http://localhost:3001/api/ids")
     .then((response: { data: ElasticsearchResult }) => {
-      const source: Source = response.data?.hits?.hits[0]?._source;
-      setDocument(source);
+      const ids = response.data?.hits?.hits.map((hit) => {
+        return hit._id;
+      });
+      setDocumentIds(ids);
+
+      // get our first page
+      getNextPage();
     })
     .catch((error) => {
       console.log(error.toJSON());
     });
+  }
+
+  function getDocument(documentID: string) {
+    axios.post("http://localhost:3001/api/document", 
+    { documentID: documentID })
+    .then((response: { data: ElasticsearchResult }) => {
+      const doc: DocumentResult = response.data?.hits?.hits[0];
+      setDocument(doc);
+    })
+    .catch((error) => {
+      console.log(error.toJSON());
+    });
+  }
+
+  function getPreviousPage() {
+    setDocument(priorDocument);
+    setPriorDocument(undefined);
+  }
+
+  function getNextPage() {
+    if (!documentIds || documentIds?.length === 0) {
+      return;
+    }
+
+    setPriorDocument(document);
+    const factor = documentIds && documentIds?.length > 0 ? documentIds.length : 1;
+    const randomNextPageIndex = Math.floor(Math.random() * factor)
+
+    getDocument(documentIds[randomNextPageIndex]);
   }
 
   return (
@@ -39,11 +75,17 @@ export function Game(props: GameProps) {
         <Score/>
       </div>
       <div className={styles['document-to-search']}>
-        <img data-testid="screenshot" className={styles['screenshot']} alt="Searchable page screenshot" src="screenshots/63d2b8a11238d1c27938b6bc.png" />
+        <img data-testid="screenshot" className={styles['screenshot']} alt="Searchable page screenshot" src={`screenshots/${document?._id}.png`} />
         <div className={styles['document-details']}>
-          <h1 className={styles['document-header']}>{document?.title}</h1>
-          <p className={styles['document-snippet']}>{document?.meta_description}</p>
+          <h1 className={styles['document-header']}>{document?._source.title}</h1>
+          <p className={styles['document-snippet']}>{document?._source.meta_description}</p>
         </div>
+      </div>
+      <div className={styles['page-controls']}>
+          <button data-testid="previous-button" className={styles['previous-button']} aria-label='Previous Document'
+            disabled={!priorDocument} onClick={getPreviousPage}><FontAwesomeIcon icon={faBackwardStep} /></button>
+          <button data-testid="next-button" className={styles['next-button']} aria-label='Next Document'
+            onClick={getNextPage}><FontAwesomeIcon icon={faForwardStep}/></button>
       </div>
       <ResultsList/>
     </div>

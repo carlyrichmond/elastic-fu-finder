@@ -72,3 +72,23 @@
 
     margin-top: 2rem;
 }
+
+.page-controls {
+    display: flex;
+    align-items: center;
+
+    margin: 0.5rem auto 1rem auto;
+}
+
+.next-button {
+    margin-left: 2rem;
+}
+
+.previous-button, .next-button {
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+
+    background-color: styles.$main-background-color;
+    color: styles.$main-text-color;
+}
