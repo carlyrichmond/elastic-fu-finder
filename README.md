@@ -20,6 +20,11 @@ The UI and server projects both need to be running to play the game locally.
 
 #### Initial Setup
 
+Before running locally please ensure you have the following pre-requisites installed:
+
+1. [Nx global install](https://nx.dev/getting-started/installation#installing-nx-globally)
+2. [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+
 The `npm` dependencies must be installed before running the application:
 
 ```sh
