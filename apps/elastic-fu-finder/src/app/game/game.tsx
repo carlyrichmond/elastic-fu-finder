@@ -87,7 +87,7 @@ export function Game() {
           <button data-testid="next-button" className={styles['next-button']} aria-label='Next Document'
             onClick={getNextPage}><FontAwesomeIcon icon={faForwardStep}/></button>
       </div>
-      <ResultsList/>
+      <ResultsList correctResultId={document?._id}/>
     </div>
   );
 }

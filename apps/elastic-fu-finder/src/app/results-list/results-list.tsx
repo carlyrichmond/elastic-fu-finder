@@ -8,10 +8,11 @@ export interface ElasticsearchResult {
   hits: { hits: DocumentResult[] }
 }
 
-/* eslint-disable-next-line */
-export interface ResultsListProps {}
+interface ResultListProps {
+  correctResultId: string | undefined;
+}
 
-export function ResultsList(props: ResultsListProps) {
+export function ResultsList(props: ResultListProps) {
   const [query, setQuery] = React.useState('');
   const [message, setMessage] =  React.useState('No query specified');
   const [showSpinner, setShowSpinner] = React.useState(false);
@@ -64,7 +65,7 @@ export function ResultsList(props: ResultsListProps) {
             }
             {
               results?.length > 0 ? results.map((result : { _id: string, _source: any }) => {
-                return <Result key={result._id} hit={result}/>
+                return <Result key={result._id} hit={result} correctResultId={props.correctResultId}/>
               }) : ''
             }
           {

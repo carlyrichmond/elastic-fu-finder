@@ -1,5 +1,31 @@
 @use '../../styles';
 
+[data-icon^='circle'] {
+    font-size: 2.5rem;
+    align-self: flex-start;
+    margin: 1rem 1rem 0 0;
+}
+
+[data-icon='circle-check'] {
+    color: styles.$success-color;
+}
+
+[data-icon='circle-xmark'] {
+    color: styles.$failure-color;
+}
+
+.search-result {
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    background-color: styles.$result-background-color;
+    border-radius: 25px;
+
+    overflow: hidden;
+    margin: 2rem;
+}
+
 img {
     display: block;
     max-width: 40%;
@@ -23,18 +49,6 @@ h3 {
     white-space: no-wrap;
     text-overflow: ellipsis;
     overflow: hidden;
-}
-
-.search-result {
-    display: flex;
-    height: 100%;
-    flex-direction: row;
-    align-items: center;
-    background-color: styles.$result-background-color;
-    border-radius: 25px;
-
-    overflow: hidden;
-    margin: 2rem;
 }
 
 p.result-body {

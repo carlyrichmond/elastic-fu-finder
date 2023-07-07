@@ -1,4 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from './result.module.scss';
+import { faCircleCheck, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 
 export interface DocumentResult {
   _id: string,
@@ -10,16 +12,19 @@ export interface Source {
   meta_description: string;
 }
 
-export function Result(result: {hit: DocumentResult }) {
-  const screenshotPath = `screenshots/${result.hit._id}.png`;
-  
+export function Result(props: { hit: DocumentResult, correctResultId: string | undefined }) {
+  // TODO add missing image placeholder logic here and in document widget
+  const screenshotPath = `screenshots/${props.hit._id}.png`;
+  const isCorrectResult = props.hit._id === props.correctResultId;
+
   return (
     <div className={styles['search-result']}>
       <img className={styles['screenshot']} alt="Web page screenshot" src={screenshotPath} />
       <div className={styles['document-text']}>
-        <h3 className={styles['result-title']} data-testid="result-title">{result.hit._source?.title}</h3>
-        <p className={styles['result-body']}>{result.hit._source?.meta_description}</p>
+        <h3 className={styles['result-title']} data-testid="result-title">{props.hit._source?.title}</h3>
+        <p className={styles['result-body']}>{props.hit._source?.meta_description}</p>
       </div>
+      <FontAwesomeIcon data-testid='result-indicator' icon={ isCorrectResult ? faCircleCheck : faCircleXmark}/>
     </div>
   );
 }
