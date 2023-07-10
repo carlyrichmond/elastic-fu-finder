@@ -8,12 +8,14 @@ import Score from '../score/score';
 import { ElasticsearchResult, ResultsList } from '../results-list/results-list';
 import { DocumentResult } from '../result/result';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBackwardStep, faForwardStep, faMugSaucer } from '@fortawesome/free-solid-svg-icons';
+import { faBackwardStep, faForwardStep } from '@fortawesome/free-solid-svg-icons';
 
-export function Game() {
+export function Game(this: any) {
   const [document, setDocument] = React.useState<DocumentResult | undefined>(undefined);
   const [documentIds, setDocumentIds] = React.useState<string[] | undefined>([]);
   const [priorDocument, setPriorDocument] = React.useState<DocumentResult | undefined>(undefined);
+
+  const [score, setScore] = React.useState<number>(0);
 
   React.useEffect(() => {
     if (documentIds?.length === 0) {
@@ -68,11 +70,16 @@ export function Game() {
     getDocument(documentIds[randomNextPageIndex]);
   }
 
+  function addPoints() {
+    setScore(score + 10);
+    getNextPage();
+  }
+
   return (
     <div className={styles['container']}>
       <div className={styles['time-and-score-bar']}>
         <Timer/>
-        <Score/>
+        <Score score={score}/>
       </div>
       <div className={styles['document-to-search']}>
         <img data-testid="screenshot" className={styles['screenshot']} alt="Searchable page screenshot" src={`screenshots/${document?._id}.png`} />
@@ -87,7 +94,7 @@ export function Game() {
           <button data-testid="next-button" className={styles['next-button']} aria-label='Next Document'
             onClick={getNextPage}><FontAwesomeIcon icon={faForwardStep}/></button>
       </div>
-      <ResultsList correctResultId={document?._id}/>
+      <ResultsList updateScore={addPoints.bind(this)} correctResultId={document?._id}/>
     </div>
   );
 }

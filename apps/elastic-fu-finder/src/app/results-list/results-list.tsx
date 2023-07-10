@@ -10,6 +10,7 @@ export interface ElasticsearchResult {
 
 interface ResultListProps {
   correctResultId: string | undefined;
+  updateScore: () => void;
 }
 
 export function ResultsList(props: ResultListProps) {
@@ -43,6 +44,8 @@ export function ResultsList(props: ResultListProps) {
 
         setMessage('');
         setResults(results);
+
+        checkForPageMatch(results);
       })
       .catch((error) => {
         console.log(error.toJSON());
@@ -51,6 +54,18 @@ export function ResultsList(props: ResultListProps) {
       .finally(() => {
         setShowSpinner(false);
       });
+  }
+
+  function checkForPageMatch(results: DocumentResult[]) {
+    const matchingResult = results.find((result) => {
+      return result._id === props.correctResultId;
+    });
+
+    if (matchingResult) {
+      props.updateScore();
+      setResults([]);
+      setQuery('');
+    }
   }
   
   return (
