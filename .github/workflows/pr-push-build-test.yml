@@ -36,10 +36,7 @@ jobs:
         with:
           node-version: 18
       - run: npm install
-      - run: npx nx test --project elastic-fu-finder --reporters=junit
-      - name: Publish Unit Test Results
-        uses: EnricoMi/publish-unit-test-result-action@v2
-        if: always()
-        with:
-          junit_files: '**/junit-*.xml'
-          check_name: Fu-Finder Unit Tests
+      - run: npx nx test --project elastic-fu-finder --coverage
+      - name: 'Report Coverage'
+        if: always() # Generate the report if tests are failing
+        uses:  davelosert/vitest-coverage-report-action@v2

@@ -33,6 +33,10 @@ export default defineConfig({
   // },
 
   test: {
+    coverage: {
+      provider: 'c8',
+      reporter: ['html', 'json-summary', 'json']
+    },
     globals: true,
     cache: {
       dir: '../../node_modules/.vitest',
