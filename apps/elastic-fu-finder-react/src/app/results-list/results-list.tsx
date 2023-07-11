@@ -4,6 +4,8 @@ import axios from 'axios';
 import Result, { DocumentResult } from '../result/result';
 import Loader from '../loader/loader';
 
+import { environment } from '../../environments/environment';
+
 export interface ElasticsearchResult {
   hits: { hits: DocumentResult[] };
 }
@@ -30,19 +32,14 @@ export function ResultsList(props: ResultListProps) {
 
   function getResults(newQuery: string) {
     setShowSpinner(true);
-    setResults([]);
 
     axios
-      .post('http://localhost:3001/api/search', { queryString: newQuery })
+      .post(`${environment.endpoint}/api/search`, { queryString: newQuery })
       .then((response: { data: ElasticsearchResult }) => {
-        const results = response.data?.hits?.hits;
+        const results = response.data.hits?.hits;
+        const message = results.length === 0 ? 'No results available' : '';
 
-        if (!results || results.length === 0) {
-          setMessage('No results available');
-          return;
-        }
-
-        setMessage('');
+        setMessage(message);
         setResults(results);
 
         checkForPageMatch(results);
@@ -63,7 +60,6 @@ export function ResultsList(props: ResultListProps) {
 
     if (matchingResult) {
       props.updateScore();
-      setResults([]);
       setQuery('');
     }
   }
