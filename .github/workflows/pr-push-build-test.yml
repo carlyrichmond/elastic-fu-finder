@@ -30,4 +30,4 @@ jobs:
         with:
           node-version: 18
       - run: npm install
-      - run: npx nx test --project elastic-fu-finder
+      - run: npx nx test --project elastic-fu-finder-react
