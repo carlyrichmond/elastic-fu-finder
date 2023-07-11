@@ -1,9 +1,10 @@
 import express from 'express';
 import { Client } from '@elastic/elasticsearch';
+import serverless from 'serverless-http';
 
 import cors from 'cors';
 
-import { environment } from './environments/environment';
+import { environment } from '../../environments/environment';
 
 const port = process.env.PORT ? Number(process.env.PORT) : 3001;
 
@@ -87,3 +88,5 @@ app.post('/api/search', async (req, res) => {
 app.listen(port, () => {
   console.log(`[ ready ] http://localhost:${port}`);
 });
+
+export const handler = serverless(app);

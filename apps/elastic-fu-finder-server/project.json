@@ -12,7 +12,7 @@
         "target": "node",
         "compiler": "tsc",
         "outputPath": "dist/apps/elastic-fu-finder-server",
-        "main": "apps/elastic-fu-finder-server/src/main.ts",
+        "main": "apps/elastic-fu-finder-server/src/netlify/functions/api.ts",
         "tsConfig": "apps/elastic-fu-finder-server/tsconfig.app.json",
         "assets": ["apps/elastic-fu-finder-server/src/assets"],
         "isolatedConfig": true,
