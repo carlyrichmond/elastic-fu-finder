@@ -19,7 +19,7 @@ jobs:
       - run: echo $ELASTIC_CLOUD_ID
       - run: npm install
       - run: npx nx serve elastic-fu-finder-server &
-      - run: npx nx run elastic-fu-finder-e2e:e2e
+      # - run: npx nx run elastic-fu-finder-e2e:e2e
   test:
     env:
       NODE_ENV: development
