@@ -5,36 +5,48 @@
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nrwl/esbuild:esbuild",
+      "executor": "@nx/webpack:webpack",
       "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
       "options": {
+        "target": "node",
+        "compiler": "tsc",
         "outputPath": "dist/apps/elastic-fu-finder-server",
-        "format": ["cjs"],
         "main": "apps/elastic-fu-finder-server/src/main.ts",
         "tsConfig": "apps/elastic-fu-finder-server/tsconfig.app.json",
-        "assets": ["apps/elastic-fu-finder-server/src/assets"]
+        "assets": ["apps/elastic-fu-finder-server/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/elastic-fu-finder-server/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
       }
     },
     "serve": {
-      "executor": "@nrwl/js:node",
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
       "options": {
         "buildTarget": "elastic-fu-finder-server:build"
       },
       "configurations": {
+        "development": {
+          "buildTarget": "elastic-fu-finder-server:build:development"
+        },
         "production": {
           "buildTarget": "elastic-fu-finder-server:build:production"
         }
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/elastic-fu-finder-server/**/*.ts"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
         "jestConfig": "apps/elastic-fu-finder-server/jest.config.ts",

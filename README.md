@@ -10,7 +10,7 @@ This monorepo project, generated using [Nx](https://nx.dev), contains the full i
 
 This repo contains the following application layers:
 
-1. [elastic-fu-finder](./apps/elastic-fu-finder/): [React](https://reactjs.org) and Typescript UI
+1. [elastic-fu-finder-react](./apps/elastic-fu-finder/): [React](https://reactjs.org) and Typescript UI
 2. [elastic-fu-finder-server](./apps/elastic-fu-finder-server/): Express Typescript Server
 3. [elastic-fu-finder-e2e](./apps/elastic-fu-finder-e2e/): Cypress E2E Testing Suite
 
@@ -35,7 +35,7 @@ npm install
 Running both the UI and server components can be done using the `nx serve` command. Note that the cloud ID and API key for your Elastic cloud deployment is required to start the server.
 
 ```sh
-nx serve elastic-fu-finder &
+nx serve elastic-fu-finder-react &
 
 export ELASTIC_CLOUD_ID=my-elastic-deployment-cloud-id
 export ELASTIC_API_KEY=my-api-key
@@ -52,7 +52,7 @@ Run `nx affected:test` to execute the unit tests affected by a change.
 
 ### Running end-to-end tests
 
-Run `nx run elastic-fu-finder-e2e:e2e` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+Run `nx run elastic-fu-finder-react-e2e:e2e` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
 
 ### Understand your workspace
 

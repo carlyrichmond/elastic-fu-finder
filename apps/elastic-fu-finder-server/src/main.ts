@@ -1,6 +1,5 @@
 import express from 'express';
 import { Client } from '@elastic/elasticsearch';
-import 'cross-fetch/polyfill';
 
 import cors from 'cors';
 
@@ -19,14 +18,14 @@ app.use(express.json());
 
 const client = new Client({
   cloud: { id: process.env.ELASTIC_CLOUD_ID },
-  auth: { apiKey: process.env.ELASTIC_API_KEY }
+  auth: { apiKey: process.env.ELASTIC_API_KEY },
 });
 
 app.get('/', (req, res) => {
   res.send({ message: 'Hello API' });
 });
 
-app.post('/api/document', async(req, res) => {
+app.post('/api/document', async (req, res) => {
   const documentID = req.body.documentID;
 
   try {
@@ -34,38 +33,37 @@ app.post('/api/document', async(req, res) => {
       index: 'search-elastic-fu-finder-pages',
       query: {
         ids: {
-          values: documentID
-        }
-      }
+          values: documentID,
+        },
+      },
     });
     res.send(results);
-  } catch(e)
- {
-  res.status(500).send({ message: 'Unable to obtain document details' });
- }});
+  } catch (e) {
+    res.status(500).send({ message: 'Unable to obtain document details' });
+  }
+});
 
- app.get('/api/ids', async(req, res) => {
+app.get('/api/ids', async (req, res) => {
   const index_size = 101;
   try {
     const results = await client.search({
       index: 'search-elastic-fu-finder-pages',
       _source: ['_id'],
       query: {
-        match_all: {}
+        match_all: {},
       },
-      size: index_size
+      size: index_size,
     });
     res.send(results);
-  } catch(e)
- {
-  res.status(500).send({ message: 'Unable to obtain ids' });
- }});
+  } catch (e) {
+    res.status(500).send({ message: 'Unable to obtain ids' });
+  }
+});
 
 app.post('/api/search', async (req, res) => {
   const query = req.body.queryString;
 
-  if (!query)
-  {
+  if (!query) {
     res.send([]);
     return;
   }
@@ -76,9 +74,9 @@ app.post('/api/search', async (req, res) => {
       query: {
         multi_match: {
           query: query,
-          fields: ['url', 'title', 'body_content']
-        }
-      }
+          fields: ['url', 'title', 'body_content'],
+        },
+      },
     });
     res.send(results);
   } catch (e) {

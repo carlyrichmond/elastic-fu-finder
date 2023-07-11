@@ -2,8 +2,8 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
-    "elastic-fu-finder": "apps/elastic-fu-finder",
-    "elastic-fu-finder-e2e": "apps/elastic-fu-finder-e2e",
-    "elastic-fu-finder-server": "apps/elastic-fu-finder-server"
+    "elastic-fu-finder-react": "apps/elastic-fu-finder-react",
+    "elastic-fu-finder-react-e2e": "apps/elastic-fu-finder-react-e2e",
+    "elastic-fu-finder-server-old": "apps/elastic-fu-finder-server-old"
   }
 }
