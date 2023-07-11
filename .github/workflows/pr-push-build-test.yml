@@ -36,11 +36,4 @@ jobs:
         with:
           node-version: 18
       - run: npm install
-      - run: npx nx test --project elastic-fu-finder --coverage
-      - name: 'Report Coverage'
-        if: always() # Generate the report if tests are failing
-        uses:  davelosert/vitest-coverage-report-action@v2
-        with:
-            json-summary-path: '../../coverage/apps/elastic-fu-finder/coverage-summary.json'
-            json-final-path: '../../coverage/apps/elastic-fu-finder/coverage-final.json'
-            vite-config-path: 'apps/elastic-fu-finder/vite-config.ts'
+      - run: npx nx test --project elastic-fu-finder
