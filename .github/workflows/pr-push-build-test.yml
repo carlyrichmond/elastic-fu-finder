@@ -43,4 +43,4 @@ jobs:
         with:
             json-summary-path: '../../coverage/apps/elastic-fu-finder/coverage-summary.json'
             json-final-path: '../../coverage/apps/elastic-fu-finder/coverage-final.json'
-            vite-config-path: 'vite-config.ts'
+            vite-config-path: 'apps/elastic-fu-finder/vite-config.ts'
