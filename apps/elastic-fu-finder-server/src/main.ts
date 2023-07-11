@@ -18,8 +18,8 @@ app.use(cors(options));
 app.use(express.json());
 
 const client = new Client({
-  cloud: { id: 'Elastic-Fu_Finder:dWtzb3V0aC5henVyZS5lbGFzdGljLWNsb3VkLmNvbTo0NDMkYTAzMTc4YTA3MDAzNDBkZGI1ZDRkZGI2YTVkYzhmYjMkZjM1ODYzOTg3MDczNDc4ODk1YjQ5NjI1MzQzZGFlM2I=' },
-  auth: { apiKey: 'emFlc0xZY0JLb0wtbWt5eUdaSEc6MGg5RUt5MHpUMmFDRDllQjRDcUgydw==' }
+  cloud: { id: process.env.ELASTIC_CLOUD_ID },
+  auth: { apiKey: process.env.ELASTIC_API_KEY }
 });
 
 app.get('/', (req, res) => {

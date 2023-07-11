@@ -32,10 +32,13 @@ npm install
 ```
 #### Run
 
-Running both the UI and server components can be done using the `nx serve` command:
+Running both the UI and server components can be done using the `nx serve` command. Note that the cloud ID and API key for your Elastic cloud deployment is required to start the server.
 
 ```sh
 nx serve elastic-fu-finder &
+
+export ELASTIC_CLOUD_ID=my-elastic-deployment-cloud-id
+export ELASTIC_API_KEY=my-api-key
 nx serve elastic-fu-finder-server &
 ```
 
