@@ -16,16 +16,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
+      - run: echo $ELASTIC_CLOUD_ID
       - run: npm install
-      #- run: npx nx serve elastic-fu-finder &
       - run: npx nx serve elastic-fu-finder-server &
       - run: npx nx run elastic-fu-finder-e2e:e2e
-      # - name: Publish Unit Test Results
-        # uses: EnricoMi/publish-unit-test-result-action@v2
-        # if: always()
-        # with:
-          # junit_files: '**/junit-*.xml'
-          # check_name: Fu-Finder E2E Tests
   test:
     env:
       NODE_ENV: development
