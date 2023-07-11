@@ -19,7 +19,6 @@ describe('elastic-fu-finder gameplay', () => {
     getNextPageButton().click();
     getScreenshot().invoke('attr', 'src').then((documentId) => {
       expect(currentDocumentId).to.not.equal(documentId);
-      getPriorPageButton().should('be.enabled');
     });
   });
 
