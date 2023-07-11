@@ -17,9 +17,9 @@ jobs:
         with:
           node-version: 18
       - run: npm install
-      - run: npx nx serve elastic-fu-finder &
+      #- run: npx nx serve elastic-fu-finder &
       - run: npx nx serve elastic-fu-finder-server &
-      - run: npx nx e2e elastic-fu-finder
+      - run: npx nx run elastic-fu-finder-e2e:e2e
       # - name: Publish Unit Test Results
         # uses: EnricoMi/publish-unit-test-result-action@v2
         # if: always()
