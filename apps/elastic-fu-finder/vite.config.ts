@@ -34,8 +34,10 @@ export default defineConfig({
 
   test: {
     coverage: {
+      enabled: true,
       provider: 'c8',
-      reporter: ['html', 'json-summary', 'json']
+      reporter: ['html', 'json-summary', 'json'],
+      reportsDirectory: '../../coverage/apps/elastic-fu-finder'
     },
     globals: true,
     cache: {
