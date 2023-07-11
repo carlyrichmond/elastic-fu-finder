@@ -21,6 +21,10 @@ export function Timer(props: TimerProps) {
 
       const difference = targetDateTime.getTime() - currentDateTime.getTime();
 
+      if (difference <= 0) {
+        
+      }
+
       const m = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
       setMinutes(m);
 
