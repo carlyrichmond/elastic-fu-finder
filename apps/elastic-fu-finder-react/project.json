@@ -19,8 +19,8 @@
           "mode": "production",
           "fileReplacements": [
             {
-              "replace": "apps/elastic-fu-finder-react/src/environments/environment.js",
-              "with": "apps/elastic-fu-finder-react/src/environments/environment.prod.js"
+              "replace": "apps/elastic-fu-finder-react/src/environments/environment.ts",
+              "with": "apps/elastic-fu-finder-react/src/environments/environment.prod.ts"
             }
           ]
         }
