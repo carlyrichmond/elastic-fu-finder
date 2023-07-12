@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Router } from 'express';
 import { Client } from '@elastic/elasticsearch';
 import serverless from 'serverless-http';
 
@@ -22,11 +22,13 @@ const client = new Client({
   auth: { apiKey: process.env.ELASTIC_API_KEY },
 });
 
-app.get('/', (req, res) => {
+const router = Router();
+
+router.get('/', (req, res) => {
   res.send({ message: 'Hello API' });
 });
 
-app.post('/api/document', async (req, res) => {
+router.post('/document', async (req, res) => {
   const documentID = req.body.documentID;
 
   try {
@@ -44,7 +46,7 @@ app.post('/api/document', async (req, res) => {
   }
 });
 
-app.get('/api/ids', async (req, res) => {
+router.get('/ids', async (req, res) => {
   const index_size = 101;
   try {
     const results = await client.search({
@@ -61,7 +63,7 @@ app.get('/api/ids', async (req, res) => {
   }
 });
 
-app.post('/api/search', async (req, res) => {
+router.post('/api/search', async (req, res) => {
   const query = req.body.queryString;
 
   if (!query) {
@@ -85,8 +87,12 @@ app.post('/api/search', async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`[ ready ] http://localhost:${port}`);
-});
+if (process.env.NODE_ENV === 'development') {
+  app.listen(port, () => {
+    console.log(`[ ready ] http://localhost:${port}`);
+  });
+}
+
+app.use('/api/', router);
 
 export const handler = serverless(app);
