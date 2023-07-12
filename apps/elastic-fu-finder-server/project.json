@@ -19,8 +19,18 @@
         "webpackConfig": "apps/elastic-fu-finder-server/webpack.config.js"
       },
       "configurations": {
-        "development": {},
-        "production": {}
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production",
+          "fileReplacements": [
+            {
+              "replace": "apps/elastic-fu-finder-server/src/environments/environment.ts",
+              "with": "apps/elastic-fu-finder-server/environments/environment.prod.ts"
+            }
+          ]
+        }
       }
     },
     "serve": {
