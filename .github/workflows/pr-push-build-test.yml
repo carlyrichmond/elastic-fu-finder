@@ -18,8 +18,7 @@ jobs:
           node-version: 18
       - run: echo $ELASTIC_CLOUD_ID
       - run: npm install
-      - run: npx nx serve elastic-fu-finder-server &
-      # - run: npx nx run elastic-fu-finder-e2e:e2e
+      - run: npx netlify dev
   test:
     env:
       NODE_ENV: development
@@ -30,4 +29,4 @@ jobs:
         with:
           node-version: 18
       - run: npm install
-      - run: npx nx test --project elastic-fu-finder-react
+      - run: npm run test
