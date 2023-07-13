@@ -1,4 +1,4 @@
-name: PR Workflow- Elastic Synthetics With Svelte Replicator
+name: PR Workflow- Elastuc Fu-Finder
 on:
   pull_request:
     branches: [main, master]
@@ -16,7 +16,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: echo $ELASTIC_CLOUD_ID
       - run: npm install
       - run: npm install saas & npm run build
       - run: npm run test
