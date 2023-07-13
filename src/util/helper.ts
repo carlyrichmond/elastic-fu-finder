@@ -1,6 +1,6 @@
 export function generateResponse(statusCode: number, data: any) {
     return {
-      statusCode: JSON.stringify(statusCode),
+      statusCode: statusCode,
       body: JSON.stringify(data)
     };
   };
