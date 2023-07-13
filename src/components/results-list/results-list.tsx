@@ -4,8 +4,6 @@ import axios from 'axios';
 import Result, { DocumentResult } from '../result/result';
 import Loader from '../loader/loader';
 
-import { environment } from '../../environments/environment';
-
 export interface ElasticsearchResult {
   hits: { hits: DocumentResult[] };
 }
@@ -34,7 +32,7 @@ export function ResultsList(props: ResultListProps) {
     setShowSpinner(true);
 
     axios
-      .post(`${environment.endpoint}/search`, { queryString: newQuery })
+      .post('.netlify/functions/search', { queryString: newQuery })
       .then((response: { data: ElasticsearchResult }) => {
         const results = response.data.hits?.hits;
         const message = results.length === 0 ? 'No results available' : '';

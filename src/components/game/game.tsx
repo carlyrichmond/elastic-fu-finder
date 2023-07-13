@@ -13,8 +13,6 @@ import Score from '../score/score';
 import { ElasticsearchResult, ResultsList } from '../results-list/results-list';
 import { DocumentResult } from '../result/result';
 
-import { environment } from '../../environments/environment';
-
 export function Game(this: any) {
   const [document, setDocument] = React.useState<DocumentResult | undefined>(
     undefined
@@ -38,7 +36,7 @@ export function Game(this: any) {
 
   function getAllIds() {
     axios
-      .get(`${environment.endpoint}/ids`)
+      .get('.netlify/functions/ids')
       .then((response: { data: ElasticsearchResult }) => {
         const ids = response.data?.hits?.hits.map((hit) => {
           return hit._id;
@@ -55,7 +53,7 @@ export function Game(this: any) {
 
   function getDocument(documentID: string) {
     axios
-      .post(`${environment.endpoint}/document`, { documentID: documentID })
+      .post('.netlify/functions/document', { documentID: documentID })
       .then((response: { data: ElasticsearchResult }) => {
         const doc: DocumentResult = response.data?.hits?.hits[0];
         setDocument(doc);
