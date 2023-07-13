@@ -1,9 +1,6 @@
-export const okCode = "200";
-export const failureCode = "500";
-
-export function generateResponse(statusCode: string, data: any) {
+export function generateResponse(statusCode: number, data: any) {
     return {
-      statusCode: statusCode,
+      statusCode: JSON.stringify(statusCode),
       headers: {
        /* Required for CORS support to work */
         "Access-Control-Allow-Origin": "*",
