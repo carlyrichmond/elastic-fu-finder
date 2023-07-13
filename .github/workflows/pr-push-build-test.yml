@@ -5,7 +5,7 @@ on:
   push:
     branches: [main, master]
 jobs:   
-  build_and_test:
+  test:
     env:
       NODE_ENV: development
       ELASTIC_CLOUD_ID: ${{ secrets.ELASTIC_CLOUD_ID }}
@@ -17,5 +17,4 @@ jobs:
         with:
           node-version: 18
       - run: npm install
-      - run: npm install saas & npm run build
       - run: npm run test
