@@ -28,8 +28,7 @@ export function Home(props: HomeProps) {
         <button
           data-testid="play-button"
           className={styles['play-button']}
-          onClick={onPlaySelect}
-        >
+          onClick={onPlaySelect}>
           Play now!
         </button>
       </div>
