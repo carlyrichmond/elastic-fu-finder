@@ -18,7 +18,7 @@ export function Home(props: HomeProps) {
 
   return (
     <div className={styles['container']}>
-      <p data-testid="welcome-message">
+      <p className={styles['welcome-message']} data-testid="welcome-message">
         Test your search-fu skills with Elasticsearch!
       </p>
       <div className={styles['buttons']}>
