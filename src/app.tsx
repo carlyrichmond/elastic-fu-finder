@@ -16,7 +16,8 @@ export function App() {
           alt="Elastic Logo"
           src="logo-elastic-horizontal-color-reverse.svg"
         />
-        <h1 className={styles['games-title']}>Fu-Finder</h1>
+        <h1 className={styles['games-title']}>
+        <a href='/'>Fu-Finder</a></h1>
       </header>
       <main>
         <Routes>

@@ -16,11 +16,18 @@ header {
   .elastic-logo {
     width: 10rem;
     height: auto;
+
+    margin-right: 1rem;
   }
 
   .games-title {
     padding-left: 0.5rem;
     font-family: styles.$header-font-family;
+  }
+
+  a {
+    text-decoration: none;
+    color: styles.$main-text-color;
   }
 }
 
