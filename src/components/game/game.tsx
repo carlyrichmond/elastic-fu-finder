@@ -86,8 +86,8 @@ export function Game(this: any) {
   return (
     <div className={styles['container']}>
       <div className={styles['time-and-score-bar']}>
-        <Timer />
-        <Score score={score} />
+        <Timer/>
+        <Score score={score}/>
       </div>
       <div className={styles['document-to-search']}>
         <img

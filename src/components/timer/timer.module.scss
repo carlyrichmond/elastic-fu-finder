@@ -4,11 +4,13 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  width: 100vw;
 }
 
-img.timer-icon {
-  width: 20%;
-  height: 20%;
+.timer-icon {
+  width: 4rem;
+  height: 4rem;
 
   margin: 1rem;
 }
