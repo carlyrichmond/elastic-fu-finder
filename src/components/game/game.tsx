@@ -10,8 +10,8 @@ import {
 
 import Timer from '../timer/timer';
 import Score from '../score/score';
-import { ElasticsearchResult, ResultsList } from '../results-list/results-list';
 import { DocumentResult } from '../result/result';
+import ResultsCollection, { ElasticsearchResult } from '../results-collection/results-collection';
 
 export function Game(this: any) {
   const [document, setDocument] = React.useState<DocumentResult | undefined>(
@@ -20,9 +20,7 @@ export function Game(this: any) {
   const [documentIds, setDocumentIds] = React.useState<string[] | undefined>(
     []
   );
-  const [priorDocument, setPriorDocument] = React.useState<
-    DocumentResult | undefined
-  >(undefined);
+  const [priorDocument, setPriorDocument] = React.useState<DocumentResult | undefined>(undefined);
 
   const [score, setScore] = React.useState<number>(0);
 
@@ -126,7 +124,7 @@ export function Game(this: any) {
           <FontAwesomeIcon icon={faForwardStep} />
         </button>
       </div>
-      <ResultsList
+      <ResultsCollection
         updateScore={addPoints.bind(this)}
         correctResultId={document?._id}
       />

@@ -2,38 +2,24 @@
 
 .result-list-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-}
-
-// Text box
-
-input {
-  width: 80%;
-  height: 100%;
-  min-height: 40px;
-  padding-left: 2.5rem;
-  border-radius: 1rem;
-  line-height: normal;
-}
-
-input::placeholder {
-  font-family: styles.$subdued-text;
-  font-size: 1.1rem;
-  text-align: center;
 }
 
 // Results
 
-.results {
+.results-collection-container {
   min-height: 12rem;
   margin-bottom: 5rem;
+
+  width: 100%;
 }
 
 .results-header {
   text-align: center;
   color: styles.$main-text-color;
   font-family: styles.$header-font-family;
+  font-size: larger;
 
   margin-bottom: 0.5rem;
 }
