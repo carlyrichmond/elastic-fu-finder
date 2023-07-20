@@ -52,8 +52,10 @@
 
   align-self: end;
   // negative borders required to align ES logo to pac-man style border
-  margin-right: -1.5rem;
-  margin-bottom: 1.25rem;
+  margin-right: -1.75rem;
+  margin-bottom: -0.95rem;
+  
+  z-index: 1;
 }
 
 .pac-man-border {
@@ -63,6 +65,8 @@
   align-items: center;
   justify-content: center;
 
+  margin-top: 1rem;
+
   .splash-image {
     max-width: 55%;
     height: auto;
@@ -70,6 +74,6 @@
 
     border-bottom: 0.25em dotted styles.$main-text-color;
     border-right: 0.25em dotted styles.$main-text-color;
-    padding: 0 1% 1% 0;
+    padding: 0 2% 3% 0;
   }
 }
