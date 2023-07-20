@@ -62,7 +62,7 @@ export function ResultsCollection(props: ResultCollectionProps) {
     const keywordMatchingResult = isDocumentReturnedInResults(keywordResults);
     const vectorMatchingResult = isDocumentReturnedInResults(vectorResults);
 
-    if (keywordMatchingResult && vectorMatchingResult) {
+    if (keywordMatchingResult || vectorMatchingResult) {
       props.updateScore();
       setQuery('');
     }
