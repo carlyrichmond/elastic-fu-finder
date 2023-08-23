@@ -4,6 +4,7 @@ import axios from 'axios';
 import { DocumentResult } from '../result/result';
 import Loader from '../loader/loader';
 import ResultsList from '../results-list/results-list';
+import QueryCodeEditor from '../query-code-editor/query-code-editor';
 
 export interface ElasticsearchResult {
   hits: { hits: DocumentResult[] };
@@ -19,35 +20,22 @@ interface ResultCollectionProps {
 }
 
 export function ResultsCollection(props: ResultCollectionProps) {
-  const [query, setQuery] = React.useState('');
   const [message, setMessage] = React.useState('No query specified');
   const [showSpinner, setShowSpinner] = React.useState(false);
-  const [keywordResults, setKeywordResults] = React.useState<DocumentResult[]>([]);
-  const [vectorResults, setVectorResults] = React.useState<DocumentResult[]>([]);
-
-  function search(event: any) {
-    if (event?.key !== 'Enter') {
-      return;
-    }
-
-    setQuery(event.currentTarget.value);
-    getResults(event.currentTarget.value);
-  }
+  const [results, setResults] = React.useState<DocumentResult[]>([]);
 
   function getResults(newQuery: string) {
     setShowSpinner(true);
 
     axios
       .post('.netlify/functions/search', { queryString: newQuery })
-      .then((response: { data: ElasticsearchMultiSearchResult }) => {
-        const keywordResults = response.data.responses[0].hits?.hits;
-        const vectorResults = response.data.responses[1].hits?.hits;
+      .then((response: { data: ElasticsearchResult }) => {
+        const results = response.data.hits?.hits;
 
         setMessage(message);
-        setKeywordResults(keywordResults);
-        setVectorResults(vectorResults);
+        setResults(results);
 
-        checkForPageMatch(keywordResults, vectorResults);
+        checkForPageMatch(results);
       })
       .catch((error: Error) => {
         console.log(error);
@@ -58,13 +46,11 @@ export function ResultsCollection(props: ResultCollectionProps) {
       });
   }
 
-  function checkForPageMatch(keywordResults: DocumentResult[], vectorResults: DocumentResult[]) {
-    const keywordMatchingResult = isDocumentReturnedInResults(keywordResults);
-    const vectorMatchingResult = isDocumentReturnedInResults(vectorResults);
+  function checkForPageMatch(results: DocumentResult[]) {
+    const matchingResult = isDocumentReturnedInResults(results);
 
-    if (keywordMatchingResult || vectorMatchingResult) {
+    if (matchingResult) {
       props.updateScore();
-      setQuery('');
     }
   }
 
@@ -76,20 +62,12 @@ export function ResultsCollection(props: ResultCollectionProps) {
 
   return (
     <div className={styles['result-list-container']}>
-      <input
-        id="search-bar"
-        defaultValue={query}
-        type="search"
-        placeholder="Find the above page!"
-        aria-label="Search record selection"
-        onKeyUp={search}>
-        </input>
+      <QueryCodeEditor getResults={getResults}/>
       <div data-testid="result" className={styles['results-collection-container']}>
         {
           showSpinner ? <Loader /> : 
              <div className={styles['results-collection']}>
-              <ResultsList correctResultId={props.correctResultId} resultsType='Keyword' results={keywordResults}/>
-              <ResultsList correctResultId={props.correctResultId} resultsType='Vector' results={vectorResults}/>
+              <ResultsList correctResultId={props.correctResultId} results={results}/>
             </div>
         }
       </div>

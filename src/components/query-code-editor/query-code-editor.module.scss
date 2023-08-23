@@ -1,0 +1,15 @@
+@use '../../styles';
+
+.code-editor-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.query-button {
+  margin-top: 1rem;
+}
+
+.code-editor {
+  z-index: -1 !important;
+}

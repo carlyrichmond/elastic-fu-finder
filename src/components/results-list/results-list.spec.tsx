@@ -8,7 +8,6 @@ describe('ResultsList', () => {
     const { baseElement } = render(
       <ResultsList
         correctResultId='192828ghfn33'
-        resultsType='Vector'
         results={results}
       />
     );
