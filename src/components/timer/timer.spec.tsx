@@ -32,8 +32,6 @@ describe('Timer', () => {
       await new Promise((resolve) => setTimeout(resolve, 1000));
     });
 
-    expect((await findByTestId(baseElement, /timer/)).innerHTML).toContain(
-      'FIN'
-    );
+    expect((await findByTestId(baseElement, /timer/)).innerHTML).toContain('FIN');
   });
 });
