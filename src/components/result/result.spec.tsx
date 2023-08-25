@@ -1,4 +1,4 @@
-import { render, screen, findByTestId } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import Result from './result';
 

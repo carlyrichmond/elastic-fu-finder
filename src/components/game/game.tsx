@@ -86,7 +86,7 @@ export function Game(this: any) {
   return (
     <div className={styles['container']}>
       <div className={styles['time-and-score-bar']}>
-        <Timer/>
+        <Timer gameTimeInMinutes={3}/>
         <Score score={score}/>
       </div>
       <div className={styles['document-to-search']}>

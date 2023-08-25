@@ -37,6 +37,7 @@ export function getAllDocumentIDs(): Promise<any> {
 export function getSearchResults(query: any): Promise<any> {
   return client.search({
     index: vectorSearchIndex,
+    profile: true,
     query: query
   });
 }
