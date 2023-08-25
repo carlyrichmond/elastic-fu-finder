@@ -39,7 +39,7 @@ export function Timer(props: TimerProps) {
       }
     }, 800);
     return () => clearInterval(interval);
-  }, []);
+  }, [navigate]);
 
   // Handle :00 seconds case with minimumIntegerDigits option
   const formattedSeconds = seconds.toLocaleString(undefined, {
