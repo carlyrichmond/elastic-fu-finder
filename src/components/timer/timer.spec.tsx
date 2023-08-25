@@ -21,16 +21,12 @@ describe('Timer', () => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
     });
 
-    expect((await findByTestId(baseElement, /timer/)).innerHTML).toContain(
-      '2:5'
-    );
+    expect((await findByTestId(baseElement, /timer/)).innerHTML).toContain('2:5');
   });
 
   it('should show FIN on time up', async () => {
     const { baseElement } = render(<BrowserRouter><Timer gameTimeInMinutes={0}/></BrowserRouter>);
-    expect((await findByTestId(baseElement, /timer/)).innerHTML).toContain(
-      '0:00'
-    );
+    expect((await findByTestId(baseElement, /timer/)).innerHTML).toContain('0:00');
 
     await act(async () => {
       await new Promise((resolve) => setTimeout(resolve, 1000));

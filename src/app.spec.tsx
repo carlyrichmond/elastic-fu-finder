@@ -19,6 +19,7 @@ describe('App', () => {
         <App />
       </BrowserRouter>
     );
+    // eslint-disable-next-line testing-library/prefer-screen-queries
     expect(getByText(/Fu-Finder/gi)).toBeTruthy();
   });
 });
