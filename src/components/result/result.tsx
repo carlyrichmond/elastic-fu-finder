@@ -4,19 +4,10 @@ import {
   faCircleCheck,
   faCircleXmark,
 } from '@fortawesome/free-solid-svg-icons';
-
-export interface DocumentResult {
-  _id: string;
-  _source: Source;
-}
-
-export interface Source {
-  title: string;
-  meta_description: string;
-}
+import { DocumentResult, Source } from '../../util/elasticsearch';
 
 export function Result(props: {
-  hit: DocumentResult;
+  hit: DocumentResult<Source>;
   correctResultId: string | undefined;
 }) {
   const screenshotPath = props.hit._id

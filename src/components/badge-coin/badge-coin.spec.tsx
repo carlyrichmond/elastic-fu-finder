@@ -1,18 +1,16 @@
 import { render, screen } from '@testing-library/react';
 
-import Badges from './badges';
-import { BadgesProps } from './badges';
+import { BadgeCoin } from './badge-coin';
+import { BadgeCoinProps } from './badge-coin';
 
 describe('Badges', () => {
   it('should render successfully', () => {
-    const props: BadgesProps = {
-    badges: [
-      { name: 'Vector Search', type: 'KnnScoreDocQuery' as const, 
+    const props: BadgeCoinProps = {
+    badge: 
+      { name: 'Vector Search', type: 'KnnScoreDocQuery', 
         bonusPoints: 10, isCollected: false 
-      },
-    ],
-    isGameActive: false};
-    const { baseElement } = render(<Badges {...props} />);
+      }};
+    const { baseElement } = render(<BadgeCoin {...props} />);
     expect(baseElement).toBeTruthy();
 
     const badgeImage = screen.getByTestId('badge-coin');

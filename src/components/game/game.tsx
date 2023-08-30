@@ -8,21 +8,23 @@ import {
   faForwardStep,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { Badge } from '../badges/badges';
 import Timer from '../timer/timer';
 import Score from '../score/score';
-import { DocumentResult } from '../result/result';
-import ResultsCollection, { ElasticsearchResult } from '../results-collection/results-collection';
+import { DocumentResult, Source, ElasticsearchResult, BadgeSource } from '../../util/elasticsearch';
+import ResultsCollection from '../results-collection/results-collection';
 
 export function Game(this: any) {
-  const [document, setDocument] = React.useState<DocumentResult | undefined>(
+  const [document, setDocument] = React.useState<DocumentResult<Source> | undefined>(
     undefined
   );
   const [documentIds, setDocumentIds] = React.useState<string[] | undefined>(
     []
   );
-  const [priorDocument, setPriorDocument] = React.useState<DocumentResult | undefined>(undefined);
+  const [priorDocument, setPriorDocument] = React.useState<DocumentResult<Source> | undefined>(undefined);
 
   const [score, setScore] = React.useState<number>(0);
+  const [badges, setBadges] = React.useState<Set<Badge>>(new Set());
 
   React.useEffect(() => {
     if (documentIds?.length === 0) {
@@ -30,12 +32,16 @@ export function Game(this: any) {
     } else if (!document) {
       getNextPage();
     }
+
+    if (badges?.size === 0) {
+      getBadges();
+    }
   });
 
   function getAllIds() {
     axios
       .get('.netlify/functions/ids')
-      .then((response: { data: ElasticsearchResult }) => {
+      .then((response: { data: ElasticsearchResult<Document> }) => {
         const ids = response.data?.hits?.hits.map((hit) => {
           return hit._id;
         });
@@ -49,11 +55,27 @@ export function Game(this: any) {
       });
   }
 
+  function getBadges() {
+    axios
+      .get('.netlify/functions/badges')
+      .then((response: { data: ElasticsearchResult<BadgeSource> }) => {
+        const badges = new Set(response.data?.hits?.hits.map((hit) => {
+          return { name: hit._source.name, type: hit._source.type,
+            imagePath: 'certification.png', bonusPoints: hit._source.points,
+            isCollected: false };
+        }));
+        setBadges(badges);
+      })
+      .catch((error) => {
+        console.log(error.toJSON());
+      });
+  }
+
   function getDocument(documentID: string) {
     axios
       .post('.netlify/functions/document', { documentID: documentID })
-      .then((response: { data: ElasticsearchResult }) => {
-        const doc: DocumentResult = response.data?.hits?.hits[0];
+      .then((response: { data: ElasticsearchResult<Source> }) => {
+        const doc: DocumentResult<Source> = response.data?.hits?.hits[0];
         setDocument(doc);
       })
       .catch((error) => {
@@ -79,8 +101,9 @@ export function Game(this: any) {
     getDocument(documentIds[randomNextPageIndex]);
   }
 
-  function addPoints() {
-    setScore(score + 10);
+  function addPoints(points?: number) {
+    const newPoints  = points ? points : 10;
+    setScore(score + newPoints);
   }
 
   return (
@@ -94,8 +117,7 @@ export function Game(this: any) {
           data-testid="screenshot"
           className={styles['screenshot']}
           alt="Searchable page screenshot"
-          src={`screenshots/${document?._id}.png`}
-        />
+          src={`screenshots/${document?._id}.png`}/>
         <div className={styles['document-details']}>
           <h1 className={styles['document-header']}>
             {document?._source.title}
@@ -111,22 +133,21 @@ export function Game(this: any) {
           className={styles['previous-button']}
           aria-label="Previous Document"
           disabled={!priorDocument}
-          onClick={getPreviousPage}
-        >
+          onClick={getPreviousPage}>
           <FontAwesomeIcon icon={faBackwardStep} />
         </button>
         <button
           data-testid="next-button"
           className={styles['next-button']}
           aria-label="Next Document"
-          onClick={getNextPage}
-        >
+          onClick={getNextPage}>
           <FontAwesomeIcon icon={faForwardStep} />
         </button>
       </div>
       <ResultsCollection
-        updateScore={addPoints.bind(this)}
+        badges={badges}
         correctResultId={document?._id}
+        updateScore={addPoints.bind(this)}
       />
     </div>
   );

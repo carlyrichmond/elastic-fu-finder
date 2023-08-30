@@ -6,6 +6,12 @@
   align-items: center;
 }
 
+.code-and-badges-panel {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
 // Text box
 
 input {

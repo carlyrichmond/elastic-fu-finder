@@ -1,30 +1,34 @@
+import { ElasticQueryType } from '../../util/elasticsearch';
+import { BadgeCoin } from '../badge-coin/badge-coin';
 import styles from './badges.module.scss';
 
 export interface Badge {
   name: string;
-  imagePath: string;
+  type: ElasticQueryType;
   bonusPoints: number;
   isCollected: boolean;
 }
 
 export interface BadgesProps {
   badges: Badge[];
+  isGameActive: boolean;
 }
 
 export function Badges(props: BadgesProps) {
+
+  const noBadgesMessage = props.isGameActive ? 'None yet...' : 'Better luck next time!';
+
   return (
     <div className={styles['badges-container']}>
       <img className={styles['badges-main-icon']} alt='Badges:' src='certification.png' />
       <div className={styles['awarded-badges-container']}>
       {
           props.badges && props.badges.length > 0 ? props.badges.map((badge: Badge) => {
-            const imagePath = badge.imagePath ? badge.imagePath: 'certification.png';
             return (
-            <img data-testid='badge-img' className={styles['badge-icon']} 
-                  alt={badge.name} title={badge.name} src={imagePath} />
+            <BadgeCoin key={badge.type} badge={badge}/>
             );
           })
-          : <p className={styles['no-badges-message']}>Better luck next time!</p>
+          : <p className={styles['no-badges-message']}>{noBadgesMessage}</p>
         }
       </div>
     </div>

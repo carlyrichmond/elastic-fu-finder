@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './results-list.module.scss';
-import Result, { DocumentResult } from '../result/result';
+import Result from '../result/result';
+import { DocumentResult, Source } from '../../util/elasticsearch';
 
 interface ResultListProps {
   correctResultId: string | undefined;
-  results: DocumentResult[];
+  results: DocumentResult<Source>[];
 }
 
 export function ResultsList(props: ResultListProps) {
@@ -14,7 +15,7 @@ export function ResultsList(props: ResultListProps) {
         <h3 className={styles['results-header']}>Results</h3>
         {
           props.results && props.results?.length > 0
-            ? props.results.map((result: { _id: string; _source: any }) => {
+            ? props.results.map((result) => {
                 return (
                   <Result
                     key={result._id}
