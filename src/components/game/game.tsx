@@ -59,10 +59,14 @@ export function Game(this: any) {
     axios
       .get('.netlify/functions/badges')
       .then((response: { data: ElasticsearchResult<BadgeSource> }) => {
-        const badges = new Set(response.data?.hits?.hits.map((hit) => {
-          return { name: hit._source.name, type: hit._source.type, 
-            bonusPoints: hit._source.points, isCollected: false };
-        }));
+        let badges: Set<Badge> = new Set();
+        if (response.data?.hits?.hits) {
+          badges = new Set(response.data?.hits?.hits.map((hit) => {
+            return { name: hit._source.name, type: hit._source.type, 
+              bonusPoints: hit._source.points, isCollected: false };
+          }));
+        }
+        
         setBadges(badges);
       })
       .catch((error) => {
