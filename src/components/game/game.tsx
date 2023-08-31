@@ -60,11 +60,10 @@ export function Game(this: any) {
       .get('.netlify/functions/badges')
       .then((response: { data: ElasticsearchResult<BadgeSource> }) => {
         let badges: Set<Badge> = new Set();
-        if (response.data?.hits?.hits) {
-          badges = new Set(response.data?.hits?.hits.map((hit) => {
-            return { name: hit._source.name, type: hit._source.type, 
-              bonusPoints: hit._source.points, isCollected: false };
-          }));
+        
+        for (const hit of response.data?.hits?.hits){
+          badges.add({ name: hit._source.name, type: hit._source.type, 
+            bonusPoints: hit._source.points, isCollected: false });
         }
         
         setBadges(badges);
