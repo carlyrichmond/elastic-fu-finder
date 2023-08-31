@@ -111,14 +111,14 @@ export function Game(this: any) {
   return (
     <div className={styles['container']}>
       <div className={styles['time-and-score-bar']}>
-        <Timer gameTimeInMinutes={1}/>
+        <Timer gameTimeInMinutes={3}/>
         <Score score={score}/>
       </div>
       <div className={styles['document-to-search']}>
         <img
-          data-testid="screenshot"
+          data-testid='screenshot'
           className={styles['screenshot']}
-          alt="Searchable page screenshot"
+          alt='Searchable page screenshot'
           src={`screenshots/${document?._id}.png`}/>
         <div className={styles['document-details']}>
           <h1 className={styles['document-header']}>
@@ -131,17 +131,17 @@ export function Game(this: any) {
       </div>
       <div className={styles['page-controls']}>
         <button
-          data-testid="previous-button"
+          data-testid='previous-button'
           className={styles['previous-button']}
-          aria-label="Previous Document"
+          aria-label='Previous Document'
           disabled={!priorDocument}
           onClick={getPreviousPage}>
           <FontAwesomeIcon icon={faBackwardStep} />
         </button>
         <button
-          data-testid="next-button"
+          data-testid='next-button'
           className={styles['next-button']}
-          aria-label="Next Document"
+          aria-label='Next Document'
           onClick={getNextPage}>
           <FontAwesomeIcon icon={faForwardStep} />
         </button>
