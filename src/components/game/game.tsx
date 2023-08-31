@@ -60,9 +60,8 @@ export function Game(this: any) {
       .get('.netlify/functions/badges')
       .then((response: { data: ElasticsearchResult<BadgeSource> }) => {
         const badges = new Set(response.data?.hits?.hits.map((hit) => {
-          return { name: hit._source.name, type: hit._source.type,
-            imagePath: 'certification.png', bonusPoints: hit._source.points,
-            isCollected: false };
+          return { name: hit._source.name, type: hit._source.type, 
+            bonusPoints: hit._source.points, isCollected: false };
         }));
         setBadges(badges);
       })
@@ -104,12 +103,15 @@ export function Game(this: any) {
   function addPoints(points?: number) {
     const newPoints  = points ? points : 10;
     setScore(score + newPoints);
+
+    // persist score to local storage
+    localStorage.setItem('score', JSON.stringify(score));
   }
 
   return (
     <div className={styles['container']}>
       <div className={styles['time-and-score-bar']}>
-        <Timer gameTimeInMinutes={3}/>
+        <Timer gameTimeInMinutes={1}/>
         <Score score={score}/>
       </div>
       <div className={styles['document-to-search']}>

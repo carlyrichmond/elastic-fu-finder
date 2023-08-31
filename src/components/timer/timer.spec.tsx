@@ -7,12 +7,14 @@ import Timer from './timer';
 
 describe('Timer', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<BrowserRouter><Timer gameTimeInMinutes={0}/></BrowserRouter>);
+    const props = { gameTimeInMinutes: 0, badges: [], points: 0 }
+    const { baseElement } = render(<BrowserRouter><Timer { ...props }/></BrowserRouter>);
     expect(baseElement).toBeTruthy();
   });
 
   it('should count down', async () => {
-    const { baseElement } = render(<BrowserRouter><Timer gameTimeInMinutes={3}/></BrowserRouter>);
+    const props = { gameTimeInMinutes: 3, badges: [], points: 0 }
+    const { baseElement } = render(<BrowserRouter><Timer { ...props }/></BrowserRouter>);
     expect((await findByTestId(baseElement, /timer/)).innerHTML).toContain(
       '3:0'
     );
@@ -25,7 +27,8 @@ describe('Timer', () => {
   });
 
   it('should show FIN on time up', async () => {
-    const { baseElement } = render(<BrowserRouter><Timer gameTimeInMinutes={0}/></BrowserRouter>);
+    const props = { gameTimeInMinutes: 0, badges: [], points: 0 }
+    const { baseElement } = render(<BrowserRouter><Timer { ...props }/></BrowserRouter>);
     expect((await findByTestId(baseElement, /timer/)).innerHTML).toContain('0:00');
 
     await act(async () => {

@@ -18,6 +18,7 @@ export function ResultsCollection(props: ResultCollectionProps) {
   const [message, setMessage] = React.useState('No query specified');
   const [showSpinner, setShowSpinner] = React.useState(false);
   const [results, setResults] = React.useState<DocumentResult<Source>[]>([]);
+  const [badgesAwarded, setBadgesAwarded] = React.useState<Badge[]>([]);
 
   function getResults(newQuery: string) {
     setShowSpinner(true);
@@ -74,9 +75,12 @@ export function ResultsCollection(props: ResultCollectionProps) {
     });
 
     props.updateScore(bonusPoints);
-  }
 
-  const badgesAwarded: Badge[] = Array.from(props.badges).filter((badge) => { return badge.isCollected});
+    // update awarded badges
+    const newBadges = Array.from(props.badges).filter((badge) => { return badge.isCollected}); 
+    setBadgesAwarded(newBadges);
+    localStorage.setItem('badges', JSON.stringify(newBadges));
+  }
 
   return (
     <div className={styles['result-list-container']}>
