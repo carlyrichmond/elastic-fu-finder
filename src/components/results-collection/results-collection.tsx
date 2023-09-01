@@ -6,7 +6,7 @@ import Badges, { Badge } from '../badges/badges';
 import Loader from '../loader/loader';
 import ResultsList from '../results-list/results-list';
 import QueryCodeEditor from '../query-code-editor/query-code-editor';
-import { BadgeSource, DocumentResult, ElasticQueryType, ElasticsearchResult, Source } from '../../util/elasticsearch';
+import { DocumentResult, ElasticQueryType, Source } from '../../util/elasticsearch';
 
 interface ResultCollectionProps {
   correctResultId: string | undefined;
