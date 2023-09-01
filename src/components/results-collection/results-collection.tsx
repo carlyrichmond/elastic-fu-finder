@@ -43,23 +43,6 @@ export function ResultsCollection(props: ResultCollectionProps) {
     }
   }
 
-  /*async function getDocument(documentID: string) {
-    try {
-      const response = await axios.post('.netlify/functions/document', { documentID: documentID });
-      const doc: DocumentResult<Source> = response.data?.hits?.hits[0];
-      
-      setDocument(doc);
-    }
-    catch(error) {
-      let errorMessage = 'Unable to get current document';
-      if (error instanceof Error) {
-        errorMessage = error.message;
-      }
-      console.log(errorMessage);
-    }
-  }
-   */
-
   async function getResults(newQuery: string) {
     setShowSpinner(true);
 
