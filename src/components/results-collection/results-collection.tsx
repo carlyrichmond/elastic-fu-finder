@@ -39,23 +39,35 @@ export function ResultsCollection(props: ResultCollectionProps) {
 
     }
     catch(error) {
-      let errorMessage = "Unable to get badges";
+      console.log('Unable to get badges');
+    }
+  }
+
+  /*async function getDocument(documentID: string) {
+    try {
+      const response = await axios.post('.netlify/functions/document', { documentID: documentID });
+      const doc: DocumentResult<Source> = response.data?.hits?.hits[0];
+      
+      setDocument(doc);
+    }
+    catch(error) {
+      let errorMessage = 'Unable to get current document';
       if (error instanceof Error) {
         errorMessage = error.message;
       }
       console.log(errorMessage);
     }
   }
+   */
 
-  function getResults(newQuery: string) {
+  async function getResults(newQuery: string) {
     setShowSpinner(true);
 
-    axios
-      .post('.netlify/functions/search', { queryString: newQuery })
-      .then((response: { data: ElasticsearchResult<Source> }) => {
-        const results = response.data.hits?.hits;
-        const queryTypes = response.data.profile?.shards[0].searches.flatMap(search => {
-          return search.query.map(element => {
+    try {
+      const response = await axios.post('.netlify/functions/search', { queryString: newQuery });
+      const results = response.data.hits?.hits;
+      const queryTypes = response.data.profile?.shards[0].searches.flatMap((search: { query: any[]; }) => {
+          return search.query.map((element: { type: any; }) => {
             return element.type;
           })
         });
@@ -68,14 +80,13 @@ export function ResultsCollection(props: ResultCollectionProps) {
         if (queryTypes){
           awardBadges(queryTypes);
         }
-      })
-      .catch((error: Error) => {
-        console.log(error);
-        setMessage('Unable to obtain results');
-      })
-      .finally(() => {
+    }
+    catch(error) {
+      console.log('Unable to get results');
+    }
+    finally {
         setShowSpinner(false);
-      });
+      }
   }
 
   function checkForPageMatch(results: DocumentResult<Source>[]) {

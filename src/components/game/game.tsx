@@ -10,7 +10,7 @@ import {
 
 import Timer from '../timer/timer';
 import Score from '../score/score';
-import { DocumentResult, Source, ElasticsearchResult } from '../../util/elasticsearch';
+import { DocumentResult, Source } from '../../util/elasticsearch';
 import ResultsCollection from '../results-collection/results-collection';
 
 export function Game(this: any) {
@@ -44,11 +44,7 @@ export function Game(this: any) {
       getNextPage();
     }
     catch(error) {
-      let errorMessage = 'Unable to get document ids';
-      if (error instanceof Error) {
-        errorMessage = error.message;
-      }
-      console.log(errorMessage);
+      console.log('Unable to get document ids');
     }
   }
 
@@ -60,11 +56,7 @@ export function Game(this: any) {
       setDocument(doc);
     }
     catch(error) {
-      let errorMessage = 'Unable to get current document';
-      if (error instanceof Error) {
-        errorMessage = error.message;
-      }
-      console.log(errorMessage);
+      console.log('Unable to get current document');
     }
   }
 
@@ -88,10 +80,11 @@ export function Game(this: any) {
 
   function addPoints(points?: number) {
     const newPoints  = points ? points : 10;
-    setScore(score + newPoints);
+    const newScore = score + newPoints;
+    setScore(newScore);
 
     // persist score to local storage
-    localStorage.setItem('score', JSON.stringify(score));
+    localStorage.setItem('score', JSON.stringify(newScore));
   }
 
   return (
