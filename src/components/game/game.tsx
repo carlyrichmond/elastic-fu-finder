@@ -32,33 +32,40 @@ export function Game(this: any) {
     }
   });
 
-  function getAllIds() {
-    axios
-      .get('.netlify/functions/ids')
-      .then((response: { data: ElasticsearchResult<Document> }) => {
-        const ids = response.data?.hits?.hits.map((hit) => {
-          return hit._id;
-        });
-        setDocumentIds(ids);
-
-        // get our first page
-        getNextPage();
-      })
-      .catch((error) => {
-        console.log(error.toJSON());
+  async function getAllIds() {
+    try {
+      const response = await axios.get('.netlify/functions/ids');
+      const ids = response.data?.hits?.hits.map((hit: { _id: string; }) => {
+        return hit._id;
       });
+      setDocumentIds(ids);
+
+      // get our first page
+      getNextPage();
+    }
+    catch(error) {
+      let errorMessage = 'Unable to get document ids';
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      console.log(errorMessage);
+    }
   }
 
-  function getDocument(documentID: string) {
-    axios
-      .post('.netlify/functions/document', { documentID: documentID })
-      .then((response: { data: ElasticsearchResult<Source> }) => {
-        const doc: DocumentResult<Source> = response.data?.hits?.hits[0];
-        setDocument(doc);
-      })
-      .catch((error) => {
-        console.log(error.toJSON());
-      });
+  async function getDocument(documentID: string) {
+    try {
+      const response = await axios.post('.netlify/functions/document', { documentID: documentID });
+      const doc: DocumentResult<Source> = response.data?.hits?.hits[0];
+      
+      setDocument(doc);
+    }
+    catch(error) {
+      let errorMessage = 'Unable to get current document';
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      console.log(errorMessage);
+    }
   }
 
   function getPreviousPage() {

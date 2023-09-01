@@ -27,19 +27,24 @@ export function ResultsCollection(props: ResultCollectionProps) {
     }
   });
 
-  function getBadges() {
-    axios
-      .get('.netlify/functions/badges')
-      .then((response: { data: ElasticsearchResult<BadgeSource> }) => {
-        const badges = response.data?.hits?.hits.map((hit) => {
-          return { name: hit._source.name, type: hit._source.type, 
-            bonusPoints: hit._source.points, isCollected: false };
-        });
-        setBadges(badges);
-      })
-      .catch((error) => {
-        console.log(error.toJSON());
+  async function getBadges() {
+    try {
+      const response = await axios.get('.netlify/functions/badges');
+      const allBadges = response.data?.hits?.hits.map((hit: { _source: { name: any; type: any; points: any; }; }) => {
+        return { name: hit._source.name, type: hit._source.type, 
+          bonusPoints: hit._source.points, isCollected: false };
       });
+
+      setBadges(allBadges);
+
+    }
+    catch(error) {
+      let errorMessage = "Unable to get badges";
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      console.log(errorMessage);
+    }
   }
 
   function getResults(newQuery: string) {

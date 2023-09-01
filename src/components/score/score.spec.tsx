@@ -4,7 +4,7 @@ import Score from './score';
 import { ScoreProps } from './score';
 
 describe('Score', () => {
-  it('should render successfully', () => {
+  it('should render successfully', async () => {
     const props: ScoreProps = { score: 10 };
     const { baseElement } = render(<Score {...props} />);
     expect(baseElement).toBeTruthy();
