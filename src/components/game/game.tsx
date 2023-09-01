@@ -1,40 +1,34 @@
 import styles from './game.module.scss';
 
 import axios from 'axios';
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBackwardStep,
   faForwardStep,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { Badge } from '../badges/badges';
 import Timer from '../timer/timer';
 import Score from '../score/score';
-import { DocumentResult, Source, ElasticsearchResult, BadgeSource } from '../../util/elasticsearch';
+import { DocumentResult, Source, ElasticsearchResult } from '../../util/elasticsearch';
 import ResultsCollection from '../results-collection/results-collection';
 
 export function Game(this: any) {
-  const [document, setDocument] = React.useState<DocumentResult<Source> | undefined>(
+  const [document, setDocument] = useState<DocumentResult<Source> | undefined>(
     undefined
   );
-  const [documentIds, setDocumentIds] = React.useState<string[] | undefined>(
+  const [documentIds, setDocumentIds] = useState<string[] | undefined>(
     []
   );
-  const [priorDocument, setPriorDocument] = React.useState<DocumentResult<Source> | undefined>(undefined);
+  const [priorDocument, setPriorDocument] = useState<DocumentResult<Source> | undefined>(undefined);
 
-  const [score, setScore] = React.useState<number>(0);
-  const [badges, setBadges] = React.useState<Set<Badge>>(new Set());
+  const [score, setScore] = useState<number>(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (documentIds?.length === 0) {
       getAllIds();
     } else if (!document) {
       getNextPage();
-    }
-
-    if (badges?.size === 0) {
-      getBadges();
     }
   });
 
@@ -49,24 +43,6 @@ export function Game(this: any) {
 
         // get our first page
         getNextPage();
-      })
-      .catch((error) => {
-        console.log(error.toJSON());
-      });
-  }
-
-  function getBadges() {
-    axios
-      .get('.netlify/functions/badges')
-      .then((response: { data: ElasticsearchResult<BadgeSource> }) => {
-        let badges: Set<Badge> = new Set();
-        
-        for (const hit of response.data?.hits?.hits){
-          badges.add({ name: hit._source.name, type: hit._source.type, 
-            bonusPoints: hit._source.points, isCollected: false });
-        }
-        
-        setBadges(badges);
       })
       .catch((error) => {
         console.log(error.toJSON());
@@ -150,7 +126,6 @@ export function Game(this: any) {
         </button>
       </div>
       <ResultsCollection
-        badges={badges}
         correctResultId={document?._id}
         updateScore={addPoints.bind(this)}
       />

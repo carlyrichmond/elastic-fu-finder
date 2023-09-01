@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import styles from './results-collection.module.scss';
 import axios from 'axios';
 
@@ -6,19 +6,41 @@ import Badges, { Badge } from '../badges/badges';
 import Loader from '../loader/loader';
 import ResultsList from '../results-list/results-list';
 import QueryCodeEditor from '../query-code-editor/query-code-editor';
-import { DocumentResult, ElasticQueryType, ElasticsearchResult, Source } from '../../util/elasticsearch';
+import { BadgeSource, DocumentResult, ElasticQueryType, ElasticsearchResult, Source } from '../../util/elasticsearch';
 
 interface ResultCollectionProps {
   correctResultId: string | undefined;
-  badges: Set<Badge>;
   updateScore: (points?: number) => void;
 }
 
 export function ResultsCollection(props: ResultCollectionProps) {
-  const [message, setMessage] = React.useState('No query specified');
-  const [showSpinner, setShowSpinner] = React.useState(false);
-  const [results, setResults] = React.useState<DocumentResult<Source>[]>([]);
-  const [badgesAwarded, setBadgesAwarded] = React.useState<Badge[]>([]);
+  const [message, setMessage] = useState('No query specified');
+  const [showSpinner, setShowSpinner] = useState(false);
+  const [results, setResults] = useState<DocumentResult<Source>[]>([]);
+
+  const [badges, setBadges] = useState<Badge[]>([]);
+  const [badgesAwarded, setBadgesAwarded] = useState<Badge[]>([]);
+
+  useEffect(() => {
+    if (badges?.length === 0) {
+      getBadges();
+    }
+  });
+
+  function getBadges() {
+    axios
+      .get('.netlify/functions/badges')
+      .then((response: { data: ElasticsearchResult<BadgeSource> }) => {
+        const badges = response.data?.hits?.hits.map((hit) => {
+          return { name: hit._source.name, type: hit._source.type, 
+            bonusPoints: hit._source.points, isCollected: false };
+        });
+        setBadges(badges);
+      })
+      .catch((error) => {
+        console.log(error.toJSON());
+      });
+  }
 
   function getResults(newQuery: string) {
     setShowSpinner(true);
@@ -67,7 +89,7 @@ export function ResultsCollection(props: ResultCollectionProps) {
 
   function awardBadges(queryTypes: ElasticQueryType[]) {
     let bonusPoints = 0;
-    props.badges.forEach(badge => {
+    badges.forEach(badge => {
       if (queryTypes.includes(badge.type) && !badge.isCollected) {
         bonusPoints += badge.bonusPoints;
         badge.isCollected = true;
@@ -77,7 +99,7 @@ export function ResultsCollection(props: ResultCollectionProps) {
     props.updateScore(bonusPoints);
 
     // update awarded badges
-    const newBadges = Array.from(props.badges).filter((badge) => { return badge.isCollected}); 
+    const newBadges = badges.filter((badge) => { return badge.isCollected}); 
     setBadgesAwarded(newBadges);
     localStorage.setItem('badges', JSON.stringify(newBadges));
   }
