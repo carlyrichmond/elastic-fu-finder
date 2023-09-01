@@ -3,11 +3,6 @@ command = "npm run build"
 functions = "src/functions/"
 publish = "build"
 
-[[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
-
 [[headers]]
   # Define which paths this specific [[headers]] block will cover.
   for = "/*"
