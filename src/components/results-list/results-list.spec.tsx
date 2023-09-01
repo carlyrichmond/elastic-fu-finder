@@ -3,7 +3,7 @@ import ResultsList from './results-list';
 import { DocumentResult, Source } from '../../util/elasticsearch';
 
 describe('ResultsList', () => {
-  it('should render', () => {
+  it('should render', async () => {
     const results: DocumentResult<Source>[] = [];
     const { baseElement } = render(
       <ResultsList

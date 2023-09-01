@@ -4,7 +4,7 @@ import Home from './home';
 import { BrowserRouter } from 'react-router-dom';
 
 describe('Home', () => {
-  it('should render successfully', () => {
+  it('should render successfully', async () => {
     const { baseElement } = render(
       <BrowserRouter>
         <Home />

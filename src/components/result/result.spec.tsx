@@ -16,7 +16,7 @@ describe('Result', () => {
     correctResultId: '039fjh3929dfj',
   };
 
-  it('should render matching result successfully', () => {
+  it('should render matching result successfully',async () => {
     const { baseElement } = render(<Result {...resultProps} />);
     expect(baseElement).toBeTruthy();
   });

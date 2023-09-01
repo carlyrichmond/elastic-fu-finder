@@ -4,7 +4,7 @@ import { BadgeCoin } from './badge-coin';
 import { BadgeCoinProps } from './badge-coin';
 
 describe('Badges', () => {
-  it('should render successfully', () => {
+  it('should render successfully', async () => {
     const props: BadgeCoinProps = {
     badge: 
       { name: 'Vector Search', type: 'KnnScoreDocQuery', 

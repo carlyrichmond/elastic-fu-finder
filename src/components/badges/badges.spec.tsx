@@ -4,7 +4,7 @@ import Badges from './badges';
 import { BadgesProps } from './badges';
 
 describe('Badges', () => {
-  it('should render successfully', () => {
+  it('should render successfully', async () => {
     const props: BadgesProps = {
     badges: [
       { name: 'Vector Search', type: 'KnnScoreDocQuery' as const, 

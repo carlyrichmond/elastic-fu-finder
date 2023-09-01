@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './app';
 
 describe('App', () => {
-  it('should render successfully', () => {
+  it('should render successfully', async () => {
     const { baseElement } = render(
       <BrowserRouter>
         <App />
@@ -13,7 +13,7 @@ describe('App', () => {
     expect(baseElement).toBeTruthy();
   });
 
-  it('should have a greeting as the title', () => {
+  it('should have a greeting as the title', async () => {
     const { getByText } = render(
       <BrowserRouter>
         <App />

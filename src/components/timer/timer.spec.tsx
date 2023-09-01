@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Timer from './timer';
 
 describe('Timer', () => {
-  it('should render successfully', () => {
+  it('should render successfully', async () => {
     const props = { gameTimeInMinutes: 0, badges: [], points: 0 }
     const { baseElement } = render(<BrowserRouter><Timer { ...props }/></BrowserRouter>);
     expect(baseElement).toBeTruthy();
