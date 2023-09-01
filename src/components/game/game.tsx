@@ -13,7 +13,7 @@ import Score from '../score/score';
 import { DocumentResult, Source } from '../../util/elasticsearch';
 import ResultsCollection from '../results-collection/results-collection';
 
-export function Game(this: any) {
+export function Game() {
   const [document, setDocument] = useState<DocumentResult<Source> | undefined>(
     undefined
   );
