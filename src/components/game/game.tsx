@@ -89,6 +89,9 @@ export function Game(this: any) {
 
     // persist score to local storage
     localStorage.setItem('score', JSON.stringify(newScore));
+
+    // move to next page
+    getNextPage();
   }
 
   return (
