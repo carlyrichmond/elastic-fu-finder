@@ -4,12 +4,14 @@
   font-family: 'Roboto Mono';
   src: local('Roboto Mono'), url('./fonts/RobotoMono-VariableFont_wght.ttf') format('truetype');
   font-weight: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Inter';
   src: local('Inter'), url('./fonts/Inter-VariableFont_slnt\,wght.ttf') format('truetype');
   font-weight: normal;
+  font-display: swap;
 }
 
 $main-background-color: rgb(29, 30, 35);
