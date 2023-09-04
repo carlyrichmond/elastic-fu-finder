@@ -6,6 +6,12 @@
   font-weight: normal;
 }
 
+@font-face {
+  font-family: 'Inter';
+  src: local('Inter'), url('./fonts/Inter-VariableFont_slnt\,wght.ttf') format('truetype');
+  font-weight: normal;
+}
+
 $main-background-color: rgb(29, 30, 35);
 $header-footer-background-color: rgb(19, 19, 23);
 $result-background-color: #535966;
@@ -18,7 +24,7 @@ $secondary-button-color: #f68fbe;
 $success-color: #7dded8;
 $failure-color: #f3d371;
 
-$header-font-family: 'Roboto Mono';
+$header-font-family: 'Roboto Mono';    
 $font-family: 'Inter';
 
 body {
