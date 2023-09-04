@@ -15,5 +15,8 @@ describe('Badges', () => {
 
     const badgeImage = screen.getByTestId('badge-coin');
     expect(badgeImage).toBeDefined();
+
+    const badgeText = screen.getAllByText('KS');
+    expect(badgeText).toBeDefined();
   });
 });
