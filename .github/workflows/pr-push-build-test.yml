@@ -1,4 +1,4 @@
-name: PR Workflow- Elastuc Fu-Finder
+name: PR Workflow-Elastic-Fu-Finder
 on:
   pull_request:
     branches: [main, master]
