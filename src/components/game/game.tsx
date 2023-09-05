@@ -8,6 +8,7 @@ import {
   faBackwardStep,
   faForwardStep,
 } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 import Timer from '../timer/timer';
 import Score from '../score/score';
@@ -15,6 +16,8 @@ import { DocumentResult, Source } from '../../util/elasticsearch';
 import ResultsCollection from '../results-collection/results-collection';
 
 export function Game(this: any) {
+  const navigate = useNavigate();
+
   const [document, setDocument] = useState<DocumentResult<Source> | undefined>(
     undefined
   );
@@ -46,6 +49,9 @@ export function Game(this: any) {
     }
     catch(error) {
       console.log('Unable to get document ids');
+      // Navigate to error screen if we cannot get ids to play
+      navigate('/error');
+
     }
   }
 

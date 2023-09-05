@@ -7,6 +7,7 @@ import Game from './components/game/game';
 import Home from './components/home/home';
 import Rules from './components/rules/rules';
 import End from './components/end/end';
+import Error from './components/error/error';
 
 export function App() {
   return (
@@ -22,10 +23,11 @@ export function App() {
       </header>
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/play" element={<Game />} />
+          <Route path="/" element={<Home />}/>
+          <Route path="/play" element={<Game />} errorElement={<Error />}/>
           <Route path="/rules" element={<Rules />} />
           <Route path="/end" element={<End />} />
+          <Route path="/error" element={<Error />} />
         </Routes>
       </main>
       <footer>

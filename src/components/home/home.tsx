@@ -22,12 +22,12 @@ export function Home(props: HomeProps) {
         Test your search-fu skills with Elasticsearch!
       </p>
       <div className={styles['buttons']}>
-        <button className={styles['rules-button']} onClick={onRulesSelect}>
+        <button className={styles['secondary-button']} onClick={onRulesSelect}>
           Rules
         </button>
         <button
           data-testid='play-button'
-          className={styles['play-button']}
+          className={styles['primary-button']}
           onClick={onPlaySelect}>
           Play now!
         </button>

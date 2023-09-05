@@ -36,3 +36,24 @@ body {
 p {
   color: $main-text-color;
 }
+
+button {
+  border-radius: 5%;
+  border-color: $main-text-color;
+  width: 6rem;
+  height: 3rem;
+
+  font-family: $font-family;
+  font-size: 1rem;
+}
+
+.secondary-button {
+  background-color: $secondary-button-color;
+  color: $main-text-color;
+  margin-right: 1.5rem;
+}
+
+.primary-button {
+  background-color: $primary-button-color;
+  color: $main-text-color;
+}

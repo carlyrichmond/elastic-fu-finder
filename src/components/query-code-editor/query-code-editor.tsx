@@ -56,7 +56,7 @@ export function QueryCodeEditor(props: QueryCodeEditorProps) {
         height="15rem"
         width="30rem"/>
       <p className={isError ? styles['error-message'] : styles['hidden-error-message'] }><FontAwesomeIcon icon={faCircleExclamation} />Invalid or malformed query. Try again!</p>
-      <button className={styles['query-button']} onClick={onQuerySubmit}>Submit</button>
+      <button className={styles['primary-button']} onClick={onQuerySubmit}>Submit</button>
     </div>
   );
 }

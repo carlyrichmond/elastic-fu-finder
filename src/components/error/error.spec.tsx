@@ -1,13 +1,13 @@
+import { BrowserRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 
-import Rules from './rules';
-import { BrowserRouter } from 'react-router-dom';
+import Error from './error';
 
-describe('Rules', () => {
+describe('Error', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
       <BrowserRouter>
-        <Rules />
+        <Error />
       </BrowserRouter>
     );
     expect(baseElement).toBeTruthy();
