@@ -108,7 +108,7 @@ export function Game(this: any) {
           data-testid='screenshot'
           className={styles['screenshot']}
           alt='Searchable page screenshot'
-          src={`screenshots/${document?._id}.png`}/>
+          src={`screenshots/${document?._id}.webp`}/>
         <div className={styles['document-details']}>
           <h1 className={styles['document-header']}>
             {document?._source.title}

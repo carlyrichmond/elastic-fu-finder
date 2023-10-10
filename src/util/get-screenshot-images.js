@@ -2,7 +2,7 @@ const fs = require('fs');
 const { Client } = require('@elastic/elasticsearch')
 const { firefox } = require('playwright');
 
-const imageFolder = 'elastic-fu-finder/public/images/screenshots';
+const imageFolder = 'public/screenshots';
 
 async function run () {
 
