@@ -91,7 +91,7 @@ export function Game(this: any) {
     setScore(newScore);
 
     //celebrate
-    confetti({origin: { x: 0.9, y: 0.4 }, spread: 180});
+    confetti({origin: { x: 0.5, y: 0.8 }, particleCount: 200, spread: 180});
 
     // persist score to local storage
     localStorage.setItem('score', JSON.stringify(newScore));
