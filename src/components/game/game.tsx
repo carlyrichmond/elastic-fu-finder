@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBackwardStep,
   faForwardStep,
+  faQuestionCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
@@ -130,6 +131,10 @@ export function Game(this: any) {
           onClick={getNextPage}>
           <FontAwesomeIcon icon={faForwardStep} />
         </button>
+        <a href='https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html'
+          target='_blank' rel="noreferrer">
+          <FontAwesomeIcon icon={faQuestionCircle} className={styles['docs-link']}/>
+        </a>
       </div>
       <ResultsCollection
         correctResultId={document?._id}

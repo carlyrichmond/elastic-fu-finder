@@ -97,3 +97,13 @@
   background-color: styles.$main-background-color;
   color: styles.$main-text-color;
 }
+
+.docs-link {
+  justify-self: flex-end;
+  color: styles.$main-text-color;
+
+  margin: 0 0 0 1rem !important;
+
+  width: 2.5rem;
+  height: 2.5rem;
+}
