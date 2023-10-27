@@ -34,6 +34,13 @@ input::placeholder {
 
 // Results
 
+.results-collection {
+  @media screen and (max-width: 600px) {
+    visibility: hidden;
+  }
+  
+}
+
 .results {
   min-height: 12rem;
   margin-bottom: 5rem;

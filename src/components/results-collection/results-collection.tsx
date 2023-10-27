@@ -110,7 +110,7 @@ export function ResultsCollection(props: ResultCollectionProps) {
     <div className={styles['result-list-container']}>
       <div className={styles['code-and-badges-panel']}>
         <QueryCodeEditor getResults={getResults}/>
-        <Badges badges={badgesAwarded} isGameActive={true}/>        
+        <Badges badges={badgesAwarded} isGameActive={true}/>      
       </div>
       
       <div data-testid="result" className={styles['results-collection-container']}>
