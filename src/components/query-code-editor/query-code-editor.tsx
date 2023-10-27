@@ -55,8 +55,11 @@ export function QueryCodeEditor(props: QueryCodeEditorProps) {
         theme={vscodeDark}
         height="15rem"
         width="96vw"/>
-      <p className={isError ? styles['error-message'] : styles['hidden-error-message'] }><FontAwesomeIcon icon={faCircleExclamation} />Invalid or malformed query. Try again!</p>
-      <button className={styles['primary-button']} onClick={onQuerySubmit}>Submit</button>
+
+      <div className={styles['code-editor-footer']}>
+        <p className={isError ? styles['error-message'] : styles['hidden-error-message'] }><FontAwesomeIcon icon={faCircleExclamation} />Invalid or malformed query</p>
+        <button className={styles['primary-button']} onClick={onQuerySubmit}>Submit</button>
+      </div>
     </div>
   );
 }

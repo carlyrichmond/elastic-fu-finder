@@ -8,24 +8,24 @@ $error-color: #F86B63;
   align-items: center;
 }
 
-.code-editor-container-error {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  border: solid;
-  border-color: $error-color;
-  border-radius: 5%;
-  padding: 1rem;
-}
-
 [data-icon='circle-exclamation'] {
   font-size: 1.5rem;
   align-self: flex-start;
   margin: 1rem 1rem 0 0;
 }
 
+.code-editor-footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  margin-top: 1rem;
+}
+
 .error-message {
+  height: 2rem;
+  max-width: 70%;
+
   color: $error-color;
   font-family: styles.$font-family;
   font-weight: bold;
