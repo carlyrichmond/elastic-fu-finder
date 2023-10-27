@@ -15,6 +15,12 @@
   flex-wrap: wrap;
 }
 
+.rewards-panel {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 // Text box
 
 input {
@@ -38,7 +44,6 @@ input::placeholder {
   @media screen and (max-width: 600px) {
     visibility: hidden;
   }
-  
 }
 
 .results {

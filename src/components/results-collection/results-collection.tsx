@@ -8,6 +8,7 @@ import Loader from '../loader/loader';
 import ResultsList from '../results-list/results-list';
 import QueryCodeEditor from '../query-code-editor/query-code-editor';
 import { DocumentResult, ElasticQueryType, Source } from '../../util/elasticsearch';
+import ResultPosition from '../result-position/result-position';
 
 interface ResultCollectionProps {
   correctResultId: string | undefined;
@@ -17,7 +18,9 @@ interface ResultCollectionProps {
 export function ResultsCollection(props: ResultCollectionProps) {
   const [message, setMessage] = useState('No query specified');
   const [showSpinner, setShowSpinner] = useState(false);
+
   const [results, setResults] = useState<DocumentResult<Source>[]>([]);
+  const [resultsPosition, setResultsPosition] = useState<number>(-1);
 
   const [badges, setBadges] = useState<Badge[]>([]);
   const [badgesAwarded, setBadgesAwarded] = useState<Badge[]>([]);
@@ -75,16 +78,17 @@ export function ResultsCollection(props: ResultCollectionProps) {
 
   function checkForPageMatch(results: DocumentResult<Source>[]) {
     const matchingResult = isDocumentReturnedInResults(results);
+    setResultsPosition(matchingResult);
 
-    if (matchingResult) {
+    if (matchingResult > -1) {
       props.updateScore();
       //celebrate
-    confetti({origin: { x: 0.5, y: 0.8 }, particleCount: 200, spread: 180});
+      confetti({origin: { x: 0.5, y: 0.8 }, particleCount: 200, spread: 180});
     }
   }
 
   function isDocumentReturnedInResults(results: DocumentResult<Source>[]) {
-    return results.find((result) => {
+    return results.findIndex((result) => {
       return result._id === props.correctResultId;
     });
   }
@@ -110,7 +114,10 @@ export function ResultsCollection(props: ResultCollectionProps) {
     <div className={styles['result-list-container']}>
       <div className={styles['code-and-badges-panel']}>
         <QueryCodeEditor getResults={getResults}/>
-        <Badges badges={badgesAwarded} isGameActive={true}/>      
+        <div className={styles['rewards-panel']}>
+          <Badges badges={badgesAwarded} isGameActive={true}/>
+          <ResultPosition position={resultsPosition}/>   
+        </div>
       </div>
       
       <div data-testid="result" className={styles['results-collection-container']}>
