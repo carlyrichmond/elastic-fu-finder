@@ -3,6 +3,7 @@
 header {
   background-color: styles.$header-footer-background-color;
   color: styles.$main-text-color;
+  
   width: 100vw;
 
   display: flex;
@@ -54,10 +55,18 @@ footer {
   padding: 1rem;
   font-family: styles.$font-family;
 
+  @media screen and (max-width: 600px) {
+    width: 98vw !important;
+  }
+
   width: 100vw;
 
   /* Positioning */
   position: fixed;
   bottom: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   text-align: center;
 }
