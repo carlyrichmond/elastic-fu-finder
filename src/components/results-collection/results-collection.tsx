@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styles from './results-collection.module.scss';
 import axios from 'axios';
+import confetti from 'canvas-confetti';
 
 import Badges, { Badge } from '../badges/badges';
 import Loader from '../loader/loader';
@@ -77,6 +78,8 @@ export function ResultsCollection(props: ResultCollectionProps) {
 
     if (matchingResult) {
       props.updateScore();
+      //celebrate
+    confetti({origin: { x: 0.5, y: 0.8 }, particleCount: 200, spread: 180});
     }
   }
 

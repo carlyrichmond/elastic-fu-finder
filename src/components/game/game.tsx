@@ -1,7 +1,6 @@
 import styles from './game.module.scss';
 
 import axios from 'axios';
-import confetti from 'canvas-confetti';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -89,9 +88,6 @@ export function Game(this: any) {
     const newPoints  = points ? points : 10;
     const newScore = score + newPoints;
     setScore(newScore);
-
-    //celebrate
-    confetti({origin: { x: 0.5, y: 0.8 }, particleCount: 200, spread: 180});
 
     // persist score to local storage
     localStorage.setItem('score', JSON.stringify(newScore));
