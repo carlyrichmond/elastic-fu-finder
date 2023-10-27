@@ -11,7 +11,7 @@ interface QueryCodeEditorProps {
 }
 
 export function QueryCodeEditor(props: QueryCodeEditorProps) {
-  const comment = '// fields: url, title, body_content'
+  const comment = `// fields: url, title, body_content`;
   const initialQuery = `
   {
     "query": {
@@ -19,7 +19,7 @@ export function QueryCodeEditor(props: QueryCodeEditorProps) {
         "title": "My page query"
       }
     }
-  }`
+  }`;
 
   const [currentQuery, setCurrentQuery] = useState(initialQuery);
   const [isError, setIsError] = useState(false);
@@ -54,7 +54,7 @@ export function QueryCodeEditor(props: QueryCodeEditorProps) {
         extensions={[langs.json()]}
         theme={vscodeDark}
         height="15rem"
-        width="30rem"/>
+        width="96vw"/>
       <p className={isError ? styles['error-message'] : styles['hidden-error-message'] }><FontAwesomeIcon icon={faCircleExclamation} />Invalid or malformed query. Try again!</p>
       <button className={styles['primary-button']} onClick={onQuerySubmit}>Submit</button>
     </div>
