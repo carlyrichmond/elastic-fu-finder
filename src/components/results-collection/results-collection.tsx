@@ -13,6 +13,7 @@ import { ResultsMessage } from '../result-message/results-message';
 interface ResultCollectionProps {
   correctResultId: string | undefined;
   updateScore: (points?: number) => void;
+  getNextPage: () => void;
 }
 
 export function ResultsCollection(props: ResultCollectionProps) {
@@ -82,6 +83,7 @@ export function ResultsCollection(props: ResultCollectionProps) {
 
     if (matchingResult > -1) {
       props.updateScore();
+      props.getNextPage();
     }
   }
 

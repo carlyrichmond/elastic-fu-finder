@@ -8,7 +8,10 @@ describe('ResultsList', () => {
         correctResultId="192828ghfn33"
         updateScore={() => {
           return 10;
-        }}
+        } } 
+        getNextPage={() => {
+          return;
+        } }        
       />
     );
     expect(baseElement).toBeTruthy();

@@ -139,6 +139,7 @@ export function Game(this: any) {
       <ResultsCollection
         correctResultId={document?._id}
         updateScore={addPoints.bind(this)}
+        getNextPage={getNextPage.bind(this)}
       />
     </div>
   );
