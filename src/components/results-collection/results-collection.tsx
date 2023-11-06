@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import styles from './results-collection.module.scss';
 import axios from 'axios';
-import confetti from 'canvas-confetti';
 
 import Badges, { Badge } from '../badges/badges';
 import Loader from '../loader/loader';
@@ -9,6 +8,7 @@ import ResultsList from '../results-list/results-list';
 import QueryCodeEditor from '../query-code-editor/query-code-editor';
 import { DocumentResult, ElasticQueryType, Source } from '../../util/elasticsearch';
 import ResultPosition from '../result-position/result-position';
+import { ResultsMessage } from '../result-message/results-message';
 
 interface ResultCollectionProps {
   correctResultId: string | undefined;
@@ -82,8 +82,6 @@ export function ResultsCollection(props: ResultCollectionProps) {
 
     if (matchingResult > -1) {
       props.updateScore();
-      //celebrate
-      confetti({origin: { x: 0.5, y: 0.8 }, particleCount: 200, spread: 180});
     }
   }
 
@@ -112,6 +110,8 @@ export function ResultsCollection(props: ResultCollectionProps) {
 
   return (
     <div className={styles['result-list-container']}>
+      <ResultsMessage hasFoundResults={resultsPosition > -1} 
+        hasSubmittedQuery={results.length > 0} />
       <div className={styles['code-and-badges-panel']}>
         <QueryCodeEditor getResults={getResults}/>
         <div className={styles['rewards-panel']}>
