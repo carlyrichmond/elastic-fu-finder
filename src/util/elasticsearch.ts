@@ -65,7 +65,7 @@ export function getDocumentByID(documentID: string): Promise<any> {
     });
 }
 
-export function getAllDocumentIDs(): Promise<any> {
+export async function getAllDocumentIDs() {
     return client.search({
         index: index,
         _source: ['_id'],
@@ -76,7 +76,7 @@ export function getAllDocumentIDs(): Promise<any> {
     });
 }
 
-export function getSearchResults(query: any): Promise<any> {
+export async function getSearchResults(query: any) {
   return client.search({
     index: vectorSearchIndex,
     profile: true,
@@ -84,7 +84,7 @@ export function getSearchResults(query: any): Promise<any> {
   });
 }
 
-export function getBadges(): Promise<any> {
+export async function getBadges() {
   return client.search({
     index: bonusBadgeIndex,
     query: {
