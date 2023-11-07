@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Fu-Finder",
+  "name": "Elastic Fu-Finder",
   "icons": [
     {
       "src": "favicon.ico",
