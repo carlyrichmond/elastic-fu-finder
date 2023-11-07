@@ -11,7 +11,7 @@ export function Rules() {
         <br/> Enter Elasticsearch queries in the code editor using the fields in the comment and hit the submit button.
       </p>
       
-      <img className={styles['game-screenshot']} src={ isMobile ? './screen-overview-small.png' : './screen-overview-large.png'} 
+      <img className={styles['game-screenshot']} src={isMobile ? './screen-overview-small.png' : './screen-overview-large.png'} 
         alt='Game Screen Layout'/>
 
       <p className={styles['rules-paragraph']} data-testid="points-paragraph">
