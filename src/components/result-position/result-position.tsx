@@ -10,7 +10,7 @@ export interface ResultPositionProps {
 export function ResultPosition(props: ResultPositionProps) {
 
   useEffect(() => {
-    console.log(props.position);
+    
   }, [props.position]);
 
   return (
