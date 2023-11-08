@@ -26,3 +26,6 @@ yarn-error.log*
 
 # Local Netlify folder
 .netlify
+
+# Demo queries
+docs/slides/demo-queries.txt
