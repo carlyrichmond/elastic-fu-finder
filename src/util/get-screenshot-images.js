@@ -16,7 +16,7 @@ async function run () {
   
     // Let's search!
     const result = await client.search({
-      index: 'search-elastic-fu-finder-pages',
+      index: 'vector-search-elastic-fu-finder-pages',
       _source: ['url'],
       size: 101
     });
