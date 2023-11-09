@@ -77,10 +77,14 @@ export async function getAllDocumentIDs() {
 }
 
 export async function getSearchResults(query: any) {
+  const keyword = query.query;
+  const vector = query.knn;
+
   return client.search({
     index: vectorSearchIndex,
     profile: true,
-    query: query
+    query: keyword,
+    knn: vector
   });
 }
 

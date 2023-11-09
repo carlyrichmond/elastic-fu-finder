@@ -36,7 +36,7 @@ export function QueryCodeEditor(props: QueryCodeEditorProps) {
 
     try {
       queryJSON = JSON.parse(query);
-      props.getResults(queryJSON.query);
+      props.getResults(queryJSON);
     } catch(error) {
       // what about 404 case?
       console.log('Invalid or malformed query. Try again!');
