@@ -52,7 +52,7 @@ export function ResultsCollection(props: ResultCollectionProps) {
     setShowSpinner(true);
 
     try {
-      const response = await axios.post('.netlify/functions/search', { queryString: newQuery });
+      const response = await axios.post('.netlify/functions/search', { documentID: props.correctResultId, queryString: newQuery });
       const results = response.data.hits?.hits;
       const queryTypes = response.data.profile?.shards[0].searches.flatMap((search: { query: any[]; }) => {
           return search.query.map((element: { type: any; }) => {

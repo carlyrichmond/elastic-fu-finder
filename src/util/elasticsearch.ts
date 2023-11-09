@@ -2,8 +2,10 @@ import { Client } from '@elastic/elasticsearch';
 
 const index = 'search-elastic-fu-finder-pages';
 const vectorSearchIndex = 'vector-search-elastic-fu-finder-pages';
-const bonusBadgeIndex = 'badge-bonuses';
 const index_size = 101;
+
+const userQueryIndex = 'user-queries';
+const bonusBadgeIndex = 'badge-bonuses';
 
 const cloudID = process.env.ELASTIC_CLOUD_ID || '';
 const apiKey = process.env.ELASTIC_API_KEY || '';
@@ -85,6 +87,18 @@ export async function getSearchResults(query: any) {
     profile: true,
     query: keyword,
     knn: vector
+  });
+}
+
+export async function indexGameSearch( documentID: string, searchTerms: any ) {
+  let document = { 
+    document_id: documentID, 
+    query: searchTerms.query, 
+    knn: searchTerms.knn };
+
+  return client.index({
+    index: userQueryIndex,
+    document: document
   });
 }
 

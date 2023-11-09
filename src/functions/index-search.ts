@@ -1,7 +1,7 @@
-import { getSearchResults, indexGameSearch } from '../util/elasticsearch';
+import { indexGameSearch } from '../util/elasticsearch';
 import { convertRequest, generateResponse } from '../util/helper';
 
-// Note: Netlify deploys this function at the endpoint /.netlify/functions/search
+// Note: Netlify deploys this function at the endpoint /.netlify/functions/index-search
 export async function handler(event: { body: { documentID: string, queryString: string}; }, context: any) {
   const request = convertRequest(event.body);
 
@@ -10,10 +10,9 @@ export async function handler(event: { body: { documentID: string, queryString: 
   }
 
   try {
-    const results = await getSearchResults(request.queryString);
     await indexGameSearch(request.documentID, request.queryString);
 
-    return generateResponse(200, results)
+    return generateResponse(200, {})
   }
   catch(e) {
     console.log(e);
