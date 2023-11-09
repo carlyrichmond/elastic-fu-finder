@@ -1,7 +1,6 @@
 import { Client } from '@elastic/elasticsearch';
 
-const index = 'search-elastic-fu-finder-pages';
-const vectorSearchIndex = 'vector-search-elastic-fu-finder-pages';
+const index = 'vector-search-elastic-fu-finder-pages';
 const index_size = 101;
 
 const userQueryIndex = 'user-queries';
@@ -83,7 +82,7 @@ export async function getSearchResults(query: any) {
   const vector = query.knn;
 
   return client.search({
-    index: vectorSearchIndex,
+    index: index,
     profile: true,
     query: keyword,
     knn: vector
