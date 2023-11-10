@@ -11,7 +11,7 @@ export function Result(props: {
   correctResultId: string | undefined;
 }) {
   const screenshotPath = props.hit._id
-    ? `screenshots/63d2b8a11238d1c27938b6bc.webp`//`screenshots/${props.hit._id}.webp`
+    ? `screenshots/${props.hit._id}.webp`
     : 'undefined.png';
   const isCorrectResult = props.hit._id === props.correctResultId;
 
