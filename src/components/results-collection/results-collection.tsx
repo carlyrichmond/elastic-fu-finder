@@ -84,6 +84,7 @@ export function ResultsCollection(props: ResultCollectionProps) {
     if (matchingResult > -1) {
       props.updateScore();
       props.getNextPage();
+      setResults([]);
     }
   }
 
