@@ -4,7 +4,7 @@
 
 This project contains the full implementation of Fu-Finder using Elasticsearch. This game is a reincarnation of [Fu-Finder](https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=557f75dc9f1252639566822d9cb94496b2fc785a) developed by the author examining query behaviour. It is in the process of being revamped to show the differences in query behaviour required for keyword and semantic search, or vector search.
 
-![Fu-Finder Web Screenshot](./docs/screenshots/fu-finder-web.png)
+![Fu-Finder Web Screenshot](./public/screen-overview-large.png)
 
 ### Project Structure
 
