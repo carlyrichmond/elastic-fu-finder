@@ -17,6 +17,10 @@ export function Result(props: {
 
   return (
     <div className={styles['search-result']}>
+      <FontAwesomeIcon
+        data-testid="result-indicator"
+        icon={isCorrectResult ? faCircleCheck : faCircleXmark}
+      />
       <img
         className={styles['screenshot']}
         alt="Web page screenshot"
@@ -30,10 +34,6 @@ export function Result(props: {
           {props.hit._source?.meta_description}
         </p>
       </div>
-      <FontAwesomeIcon
-        data-testid="result-indicator"
-        icon={isCorrectResult ? faCircleCheck : faCircleXmark}
-      />
     </div>
   );
 }

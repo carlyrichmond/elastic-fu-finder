@@ -2,8 +2,8 @@
 
 [data-icon^='circle'] {
   font-size: 2.5rem;
-  align-self: flex-start;
-  margin: 1rem 1rem 0 0;
+  align-self: flex-end;
+  margin: 0.5rem 0.5rem 0 0;
 }
 
 [data-icon='circle-check'] {
@@ -16,19 +16,28 @@
 
 .search-result {
   display: flex;
-  height: 100%;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  background-color: styles.$result-background-color;
-  border-radius: 25px;
+  
+  width: fit-content;
+  max-width: 16rem;
+
+  height: fit-content;
+  max-height: 30rem;
+
+  margin: 0.5rem 1rem;
+  padding: 1rem 1.5rem;
 
   overflow: hidden;
-  margin: 2rem;
+
+  background-color: styles.$result-background-color;
+  box-shadow: 1px 4px 8px 0 styles.$result-shadow-color;
+  transition: 0.3s;
 }
 
 .screenshot {
   display: block;
-  max-width: 40%;
+  max-width: 90%;
   max-height: 80%;
   width: auto;
   height: auto;
@@ -44,22 +53,30 @@ h3 {
 
   color: styles.$main-text-color;
   font-family: styles.$font-family;
-  font-size: 1rem;
+  font-size: 1.5rem;
+
+  display: -webkit-inline-box;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
 
   white-space: no-wrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
+.document-text {
+  margin: auto;
+}
+
 p.result-body {
-  display: block;
   font-size: 1rem;
   text-align: left;
 
   overflow: hidden;
   overflow-wrap: break-word;
   -webkit-box-orient: vertical;
-  width: clamp(5%, 80vw, 70%);
-
-  height: 10rem;
+  
+  display: -webkit-inline-box;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
 }

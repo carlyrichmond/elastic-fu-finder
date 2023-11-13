@@ -12,7 +12,8 @@ export function ResultsList(props: ResultListProps) {
   return (
     <div className={styles['result-list-container']}>
       <div data-testid="result" className={styles['results']}>
-        <h3 className={styles['results-header']}>Results</h3>
+        <h2 className={styles['results-header']}>Results</h2>
+        <div className={styles['result-cards-container']}>
         {
           props.results && props.results?.length > 0
             ? props.results.map((result) => {
@@ -25,10 +26,11 @@ export function ResultsList(props: ResultListProps) {
                 );
               })
             : 
-            <p data-testid="result-message" className={styles['hits-message']}>
+            <p data-testid="results-message" className={styles['hits-message']}>
               No results available
             </p>
         }
+        </div>
       </div>
     </div>
   );

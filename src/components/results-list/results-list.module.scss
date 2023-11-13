@@ -22,12 +22,21 @@
   margin-bottom: 0.5rem;
 }
 
-li {
-  list-style-type: none;
+.result-cards-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+	
+  justify-content: center;
+  height: fit-content;
+
+  padding-bottom: 4rem;
 }
 
-.hits-message {
+.results-message {
   margin: 2rem;
+  margin-bottom: 3rem !important;
+
   font-family: styles.$font-family;
   font-size: 1.1rem;
 }
