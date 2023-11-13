@@ -5,39 +5,42 @@ import confetti from 'canvas-confetti';
 
 /* eslint-disable-next-line */
 export interface ResultsMessageProps {
-  hasFoundResults: boolean;
-  hasSubmittedQuery: boolean;
+  resultsPosition: number | undefined;
+  hasGameInitialized: boolean;
 }
 
 export function ResultsMessage(props: ResultsMessageProps) {
   const winMessage: string = 'Win!';
   const notFoundMessage: string = 'Try again!'
+  const startMessage: string = 'Go!';
 
-  const [message, setMessage] = useState(notFoundMessage);
+  const [message, setMessage] = useState('Go!');
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    if (props.hasSubmittedQuery) {
+    if (props.resultsPosition === undefined && !props.hasGameInitialized) {
+      setMessage(startMessage);
+      setIsVisible(true);
+    } else if (props.resultsPosition !== undefined && props.resultsPosition > -1) {
+      setMessage(winMessage);
+      setIsVisible(true);
+
+      confetti({ origin: { x: 0.5, y: 0.8 }, particleCount: 200, spread: 180 });
+    } else if (props.resultsPosition === -1) {
+      setMessage(notFoundMessage);
       setIsVisible(true);
     }
-
-      if (props.hasFoundResults) {
-        setMessage(winMessage);
-        confetti({origin: { x: 0.5, y: 0.8 }, particleCount: 200, spread: 180});
-      } else {
-        setMessage(notFoundMessage);
-      }
     setTimeout(clearMessage, 1500)
-  }, [props.hasFoundResults, props.hasSubmittedQuery]);
+  }, [props.hasGameInitialized, props.resultsPosition]);
 
   function clearMessage() {
     setIsVisible(false);
   }
 
   return (
-        <p data-testid="results-message" 
-          className={isVisible ? styles['find-message'] : styles['hidden-message']}>{message}
-      </p>
+    <p data-testid="results-message"
+      className={isVisible ? styles['find-message'] : styles['hidden-message']}>{message}
+    </p>
   );
 }
 

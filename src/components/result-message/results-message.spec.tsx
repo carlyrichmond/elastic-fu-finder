@@ -7,10 +7,18 @@ describe('ResultsMessage', () => {
 
   beforeAll(() => {
     HTMLCanvasElement.prototype.getContext = jest.fn();
-  })
+  });
+
+  it('should show go message', async () => {
+    const { baseElement } = render(<ResultsMessage resultsPosition={undefined} hasGameInitialized={false}/>);
+    expect(baseElement).toBeTruthy();
+
+    const message = screen.getByTestId('results-message');
+    expect(message.innerHTML).toContain('Go');
+  });
 
   it('should show win message', async () => {
-    const { baseElement } = render(<ResultsMessage hasFoundResults={true} hasSubmittedQuery={true}/>);
+    const { baseElement } = render(<ResultsMessage resultsPosition={1} hasGameInitialized={true}/>);
     expect(baseElement).toBeTruthy();
 
     const message = screen.getByTestId('results-message');
@@ -18,7 +26,7 @@ describe('ResultsMessage', () => {
   });
 
   it('should show try again message', async () => {
-    const { baseElement } = render(<ResultsMessage hasFoundResults={false} hasSubmittedQuery={true}/>);
+    const { baseElement } = render(<ResultsMessage resultsPosition={-1} hasGameInitialized={true}/>);
     expect(baseElement).toBeTruthy();
 
     const message = screen.getByTestId('results-message');

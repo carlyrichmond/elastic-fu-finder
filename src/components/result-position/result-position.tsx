@@ -4,7 +4,7 @@ import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { useEffect } from 'react';
 
 export interface ResultPositionProps {
-  position: number;
+  position: number | undefined;
 }
 
 export function ResultPosition(props: ResultPositionProps) {
@@ -17,7 +17,7 @@ export function ResultPosition(props: ResultPositionProps) {
     <div className={styles['result-position-container']}>
       <img className={styles['result-position-main-icon']} alt='Result:' src='result-position.png' />
       {
-          props.position > -1 ? 
+          props.position && props.position > -1 ? 
           <p key={props.position} className={styles['position']} data-testid="position">{props.position}</p>
           : <FontAwesomeIcon data-testid="no-result-returned-indicator"
           className={styles['no-result-indicator']} icon={faCircleXmark}

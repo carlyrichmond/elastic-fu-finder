@@ -18,10 +18,11 @@ interface ResultCollectionProps {
 
 export function ResultsCollection(props: ResultCollectionProps) {
   const [message, setMessage] = useState('No query specified');
+  const [hasGamerQueried, setHasGamerQueried] = useState(false);
   const [showSpinner, setShowSpinner] = useState(false);
 
   const [results, setResults] = useState<DocumentResult<Source>[]>([]);
-  const [resultsPosition, setResultsPosition] = useState<number>(-1);
+  const [resultsPosition, setResultsPosition] = useState<number|undefined>(undefined);
 
   const [badges, setBadges] = useState<Badge[]>([]);
   const [badgesAwarded, setBadgesAwarded] = useState<Badge[]>([]);
@@ -50,6 +51,7 @@ export function ResultsCollection(props: ResultCollectionProps) {
 
   async function getResults(newQuery: string) {
     setShowSpinner(true);
+    setResultsPosition(undefined);
 
     try {
       const response = await axios.post('.netlify/functions/search', { documentID: props.correctResultId, queryString: newQuery });
@@ -74,6 +76,7 @@ export function ResultsCollection(props: ResultCollectionProps) {
     }
     finally {
         setShowSpinner(false);
+        setHasGamerQueried(true);
       }
   }
 
@@ -113,8 +116,7 @@ export function ResultsCollection(props: ResultCollectionProps) {
 
   return (
     <div className={styles['result-list-container']}>
-      <ResultsMessage hasFoundResults={resultsPosition > -1} 
-        hasSubmittedQuery={results.length > 0} />
+      <ResultsMessage resultsPosition={resultsPosition} hasGameInitialized={hasGamerQueried}/>
       <div className={styles['code-and-badges-panel']}>
         <QueryCodeEditor getResults={getResults}/>
         <div className={styles['rewards-panel']}>
